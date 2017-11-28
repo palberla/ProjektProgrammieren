@@ -6,6 +6,8 @@ import java.util.*;
  * @author Michael Jahn
  */
 public class Raum extends Identifier {
+	
+	private static List<Raum> raumListe;
 
 	/**
 	 * Die Raumnummer.
@@ -30,7 +32,7 @@ public class Raum extends Identifier {
 	/**
 	 * Liste aller Reservierungen des Raumes.
 	 */
-	private Set<Reservierung> reservierungen;
+	private List<Reservierung> reservierungen;
 	
 	/**
 	 * Default constructor
@@ -49,6 +51,7 @@ public class Raum extends Identifier {
 	/**
 	 * Setzt die Raumnummer des Raumes neu.
 	 * @param nummer Neue Raumnummer
+	 * @exception IllegalArgumentException bei NULL oder leerem String
 	 */
 	public void setNummer(String nummer) {
 		if (nummer == null || nummer.isEmpty()) {
@@ -68,6 +71,7 @@ public class Raum extends Identifier {
 	/**
 	 * Setzt die Anzahl der Arbeitsplätze des Raumes.
 	 * @param arbeitsplaetze Anzahl der Arbeitsplätze
+	 * @exception IllegalArgumentException bei negativer Zahl
 	 */
 	public void setArbeitsplaetze(int arbeitsplaetze) {
 		if (arbeitsplaetze > 0) {
@@ -87,6 +91,7 @@ public class Raum extends Identifier {
 	/**
 	 * Setzt die Anzahl der Computer-Arbeitsplätze des Raumes.
 	 * @param computerarbeitsplaetze Anzahl der Computer-Arbeitsplätze
+	 * @exception IllegalArgumentException bei negativer Zahl
 	 */
 	public void setComputerarbeitsplaetze(int computerarbeitsplaetze) {
 		if (computerarbeitsplaetze > 0) {
@@ -116,9 +121,9 @@ public class Raum extends Identifier {
 	 * gibt die veränderbare Liste der Reservierungen des Raumes zurück.
 	 * @return Veränderbare Liste der Reservierungen des Raumes
 	 */
-	private Set<Reservierung> getThisReservierungen() {
+	private List<Reservierung> getReservierungen() {
 		if (this.reservierungen == null) {
-			this.reservierungen = new HashSet<Reservierung>();
+			this.reservierungen = new LinkedList<Reservierung>();
 		}
 		return reservierungen;
 	}
@@ -127,16 +132,8 @@ public class Raum extends Identifier {
 	 * Gibt die unveränderbare Liste der Reservierungen des Raumes zurück.
 	 * @return unveränderbare Liste der Reservierunge des Raumes
 	 */
-	public Set<Reservierung> getReservierungen() {
-		return Collections.unmodifiableSet(this.getThisReservierungen());
-	}
-
-	/**
-	 * Setzt eine neue Liste mit Reservierungen für den Raum hinzu. 
-	 * @param reservierungen Liste mit Reservierungen für den Raum
-	 */
-	public void setReservierungen(Set<Reservierung> reservierungen) {
-		this.reservierungen = reservierungen;
+	public Collection<Reservierung> getUnmodifiableReservierungen() {
+		return Collections.unmodifiableCollection(this.getReservierungen());
 	}
 	
 	/**
@@ -147,6 +144,27 @@ public class Raum extends Identifier {
 	 */
 	public boolean addReservierung(Reservierung reservierung)
 	{
-		return this.getThisReservierungen().add(reservierung);
+		return this.getReservierungen().add(reservierung);
+	}
+	
+	public boolean removeReservierung(Reservierung reservierung)
+	{
+		return this.getReservierungen().remove(reservierung);
+	}
+	
+	private static List<Raum> getRaumListe()
+	{
+		if (Raum.raumListe == null) { Raum.raumListe = new ArrayList<Raum>(); }
+		return Raum.raumListe;
+	}
+	
+	public static Collection<Raum> getUnmodifiableRaumListe()
+	{
+		return Collections.unmodifiableCollection(Raum.getRaumListe());
+	}
+	
+	public static boolean addRaum(Raum raum)
+	{
+		return Raum.getRaumListe().add(raum);
 	}
 }

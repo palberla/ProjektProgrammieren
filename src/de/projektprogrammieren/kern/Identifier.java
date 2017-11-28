@@ -3,19 +3,27 @@ package de.projektprogrammieren.kern;
 /**
  * @author Michael Jahn
  */
-public abstract class Identifier implements Identifiable {
+public abstract class Identifier {
 
 	/**
 	 * Die Identifikationsnummer
 	 */
 	private int id;
 
-	@Override
+	/**
+	 * Gibt die Identifikationsnummer wieder
+	 * 
+	 * @return die Identifikationsnummer
+	 */
 	public int getId() {
 		return this.id;
 	}
 
-	@Override
+	/**
+	 * Setzt die Identifikationsnummer
+	 * 
+	 * @param id neue Identifikationsnummer
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}

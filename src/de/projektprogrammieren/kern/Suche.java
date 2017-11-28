@@ -45,7 +45,7 @@ public class Suche {
     /**
      * Liste mit allen Räumen, nach denen gesucht werden kann.
      */
-    private Set<Raum> raeume;
+    private List<SuchRaum> suchraumListe;
     
     /**
      * Default constructor
@@ -171,7 +171,8 @@ public class Suche {
 	 * @param raeume Liste aller Räume, zu denen gesucht werden soll.
 	 */
 	public void setRaeume(Set<Raum> raeume) {
-		this.raeume = raeume;
+		// TODO
+		// this.raeume = raeume;
 	}
 
 	/**
@@ -179,7 +180,7 @@ public class Suche {
      */
     private void suche() {
 
-        // TODO implement here
+    	// TODO
     }
 
     /**
