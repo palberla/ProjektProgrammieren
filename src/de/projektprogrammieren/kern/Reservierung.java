@@ -7,15 +7,7 @@ import java.util.*;
  */
 public class Reservierung extends Identifier {
 	
-    /**
-     * Die Zeit, ab wann der Raum reserviert ist
-     */
-    private Calendar zeitAb;
-
-    /**
-     * Die Zeit, bis wann der Raum reserivert ist
-     */
-    private Calendar zeitBis;
+	private Zeitraum zeitraum = new Zeitraum();
 
     /**
      * Der reservierte Raum
@@ -44,29 +36,15 @@ public class Reservierung extends Identifier {
     	this.nutzer.removeReservierung(this);
     	return true;
     }
-    
-    /**
-     * Gibt die Zeit an, ab wann die Reservierung gültig ist.
-     * @return Anfang der Reservierung
-     */
-	public Calendar getZeitAb() {
-		return zeitAb;
+	
+	public Zeitraum getZeitraum()
+	{
+		return this.zeitraum;
 	}
-
-	public void setZeitAb(Calendar zeitAb) {
-		this.zeitAb = zeitAb;
-	}
-
-    /**
-     * Gibt die Zeit an, bis wann die Reservierung gültig ist.
-     * @return Ende der Reservierung
-     */
-	public Calendar getZeitBis() {
-		return zeitBis;
-	}
-
-	public void setZeitBis(Calendar zeitBis) {
-		this.zeitBis = zeitBis;
+	
+	public void setZeitraum(Zeitraum zeitraum)
+	{
+		this.zeitraum = zeitraum;
 	}
 
     /**
