@@ -35,17 +35,12 @@ public class Suche {
     /**
      * Suchkriterium: Angeforderter Raum
      */
-    private Raum raum;
+    private KernRaum raum;
 
     /**
      * Suchkriterium: Nutzer der sucht
      */
     public Nutzer nutzer;
-    
-    /**
-     * Liste mit allen Räumen, nach denen gesucht werden kann.
-     */
-    private List<SuchRaum> suchraumListe;
     
     /**
      * Default constructor
@@ -138,7 +133,7 @@ public class Suche {
      * Gibt den Raum, der reserviert werden soll zurück.
      * @return Zu reservierender Raum
      */
-	public Raum getRaum() {
+	public KernRaum getRaum() {
 		return raum;
 	}
 
@@ -146,7 +141,7 @@ public class Suche {
 	 * Setzt den zu reservierenden Raum
 	 * @param raum zu reservierender Raum
 	 */
-	public void setRaum(Raum raum) {
+	public void setRaum(KernRaum raum) {
 		this.raum = raum;
 	}
 
@@ -166,35 +161,25 @@ public class Suche {
 		this.nutzer = nutzer;
 	}
 
-	/**
-	 * Setzt die Liste aller Räume, zu denen gesucht werden soll.
-	 * @param raeume Liste aller Räume, zu denen gesucht werden soll.
-	 */
-	public void setRaeume(Set<Raum> raeume) {
-		// TODO
-		// this.raeume = raeume;
-	}
-
-	/**
-     * Führt die eigentliche Suche aus. Zuerst wird 
-     */
-    private void suche() {
-
-    	// TODO
-    }
-
     /**
      * @return Liste mit den Räumen, die auf die Anfrage passen.
      * @throws KannNichtSuchenException
      */
-    public Set<Raum> getSuchergebnis() {
+    public Set<SuchRaum> getSuchergebnis() {
         /*
          * Kriterien, ob eine Suche überhaupt beginnt.
          * Wenn diese nicht erfüllt werden, wird eine Exception geworfen
          * 1. Gibt es einen Nutzer, der sucht?
          * 2. Gibt es Räume, nach denen gesucht werden kann?
          */
+    	if (this.getNutzer() == null) { /* Fehlender Nutzer Exception */ }
+    	if (KernRaum.getUnmodifiableRaumListe().isEmpty()) { /* Keine Räume zum Suchen Exception */ }
+    	
+    	/* wenn nach einem speziellen Raum gesucht wird, ist nur dieser Raum in der Liste */
+    	/* Mindestsuchbedingungen? */
+    	/* -> Zeitr
+    	/* Wird ein Raum gesucht? */
         return null;
+        /* SQL - Abfrage erstellen aus der Suchklasse -> Liste mit RaumIds, mit denen  */
     }
-
 }

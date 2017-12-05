@@ -7,12 +7,12 @@ import java.util.*;
  */
 public class Reservierung extends Identifier {
 	
-	private Zeitraum zeitraum = new Zeitraum();
+	private Zeitraum zeitraum = null;
 
     /**
      * Der reservierte Raum
      */
-    private Raum raum;
+    private KernRaum raum;
 
     /**
      * Nutzer, der den Raum reserviert hat
@@ -24,7 +24,7 @@ public class Reservierung extends Identifier {
      */
     public Reservierung() {}
     
-    public Reservierung(Raum raum, Nutzer nutzer)
+    public Reservierung(KernRaum raum, Nutzer nutzer)
     {
     	this.setRaum(raum);
     	this.setNutzer(nutzer);
@@ -51,11 +51,11 @@ public class Reservierung extends Identifier {
      * Gibt den Raum, der reserviert wurde.
      * @return Raum der Reservierung
      */
-	public Raum getRaum() {
+	public KernRaum getRaum() {
 		return raum;
 	}
 
-	public void setRaum(Raum raum) {
+	public void setRaum(KernRaum raum) {
 		this.raum = raum;
 		this.raum.addReservierung(this);
 	}

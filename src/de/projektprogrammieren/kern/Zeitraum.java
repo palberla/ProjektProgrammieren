@@ -2,15 +2,18 @@ package de.projektprogrammieren.kern;
 
 import java.util.Calendar;
 
+/**
+ * @author Michael Jahn
+ */
 public class Zeitraum {
 	
     /**
-     * Die Zeit, ab wann der Raum reserviert ist
+     * Beginn der Zeit
      */
     private Calendar zeitAb = null;
 
     /**
-     * Die Zeit, bis wann der Raum reserivert ist
+     * Ende der Zeit
      */
     private Calendar zeitBis = null;
     
