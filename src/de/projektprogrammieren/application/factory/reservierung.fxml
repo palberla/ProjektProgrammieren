@@ -6,12 +6,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.projektprogrammieren.application.controller.ReservierungsController">
    <children>
       <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="264.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Downloads/Marielle%20Price.png" />
+            <Image url="@Logo%20ROOM.png" />
          </image>
       </ImageView>
       <Text layoutX="177.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reservierung" underline="true" wrappingWidth="329.0">
@@ -23,14 +22,14 @@
       <Text layoutX="177.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gewählter Zeitraum:" />
       <Text layoutX="364.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="von" />
       <Text layoutX="366.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bis" />
-      <TextField layoutX="463.0" layoutY="177.0" prefHeight="25.0" prefWidth="96.0" promptText="A011" />
-      <TextField layoutX="463.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="11:30" />
-      <TextField layoutX="463.0" layoutY="235.0" prefHeight="25.0" prefWidth="96.0" promptText="13:00" />
-      <TextField alignment="TOP_LEFT" layoutX="347.0" layoutY="284.0" prefHeight="25.0" prefWidth="212.0" promptText="Max Mustermann" />
+      <TextField fx:id="txtFieldRaumNummer" layoutX="463.0" layoutY="177.0" prefHeight="25.0" prefWidth="96.0" promptText="A011" />
+      <TextField fx:id="txtFieldZeitVon" layoutX="463.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="11:30" />
+      <TextField fx:id="txtFieldZeitBis" layoutX="463.0" layoutY="235.0" prefHeight="25.0" prefWidth="96.0" promptText="13:00" />
+      <TextField fx:id="txtFieldNutzerName" alignment="TOP_LEFT" layoutX="347.0" layoutY="284.0" prefHeight="25.0" prefWidth="212.0" promptText="Max Mustermann" />
       <Text layoutX="178.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auf den Namen:" />
       <Text layoutX="178.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kommentar/Anfrage/Sonstiges:" />
-      <TextArea layoutX="177.0" layoutY="346.0" prefHeight="122.0" prefWidth="383.0" />
-      <Button layoutX="321.0" layoutY="485.0" mnemonicParsing="false" text="Bestätigen">
+      <TextArea fx:id="txtFieldKommentare" layoutX="177.0" layoutY="346.0" prefHeight="122.0" prefWidth="383.0" />
+      <Button fx:id="btnBestätigen" layoutX="321.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#btnBestätigenClicked" text="Bestätigen">
          <font>
             <Font size="15.0" />
          </font>

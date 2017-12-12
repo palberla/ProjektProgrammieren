@@ -1,16 +1,13 @@
 package de.projektprogrammieren.application.controller;
 
-import de.projektprogrammieren.application.Main;
+import de.projektprogrammieren.application.factory.SceneFactory;
 import de.projektprogrammieren.util.EMailValidierer;
+import de.projektprogrammieren.util.PasswortValidierer;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class AnmeldungsController {
 	
@@ -24,17 +21,16 @@ public class AnmeldungsController {
 	TextField txtFieldEMail;
 	
 	@FXML
-	TextField txtFieldPasswort;
+	PasswordField pwdFieldPasswort;
 	
 	@FXML
-	protected void hyperLinkRegistrierungPressed()
+	protected void hyperLinkRegistrierungClicked()
 	{
-		Main.getPrimaryStage().setScene(Main.getSceneRegistrierung());
-		Main.getPrimaryStage().show();
+		SceneFactory.getInstance().showSceneRegistrierung();
 	}
 	
 	@FXML
-	protected void btnAnmeldungPressed()
+	protected void btnAnmeldungClicked()
 	{
 		if (!(new EMailValidierer(txtFieldEMail.getText()).isValidEMail()))
 		{
@@ -42,15 +38,14 @@ public class AnmeldungsController {
 			return;
 		}
 		this.setGreenBorderForTextField(txtFieldEMail);
-		if (txtFieldPasswort.getText() == null || txtFieldPasswort.getText().isEmpty())
+		if (!(new PasswortValidierer(pwdFieldPasswort.getText()).isValidPasswort()))
 		{
-			this.setRedBorderForTextField(txtFieldPasswort);
+			this.setRedBorderForTextField(pwdFieldPasswort);
 			return;
 		}
-		this.setGreenBorderForTextField(txtFieldPasswort);
+		this.setGreenBorderForTextField(pwdFieldPasswort);
 		
-		Main.getPrimaryStage().setScene(Main.getSceneSuche());
-		Main.getPrimaryStage().show();
+		SceneFactory.getInstance().showSceneSuche();
 		
 //		// this.txtFieldEMail.setPromptText("Hello World!");
 //		final Stage dialog = new Stage();

@@ -1,7 +1,5 @@
 package de.projektprogrammieren.kern;
 
-import java.util.*;
-
 /**
  * @author Michael Jahn
  */
@@ -12,7 +10,7 @@ public class Reservierung extends Identifier {
     /**
      * Der reservierte Raum
      */
-    private KernRaum raum;
+    private Raum raum;
 
     /**
      * Nutzer, der den Raum reserviert hat
@@ -51,11 +49,11 @@ public class Reservierung extends Identifier {
      * Gibt den Raum, der reserviert wurde.
      * @return Raum der Reservierung
      */
-	public KernRaum getRaum() {
+	public Raum getRaum() {
 		return raum;
 	}
 
-	public void setRaum(KernRaum raum) {
+	public void setRaum(Raum raum) {
 		this.raum = raum;
 		this.raum.addReservierung(this);
 	}

@@ -6,15 +6,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.projektprogrammieren.application.controller.AnmeldungsController">
    <children>
-      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="264.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="264.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Downloads/Marielle%20Price.png" />
+            <Image url="@Logo%20ROOM.png" />
          </image>
       </ImageView>
-      <Text layoutX="238.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Willkommen!" wrappingWidth="251.072265625">
+      <Text layoutX="235.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Willkommen!" wrappingWidth="283.072265625">
          <font>
             <Font size="42.0" />
          </font>
@@ -24,17 +23,17 @@
             <Font size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtFieldPasswort" layoutX="200.0" layoutY="288.0" prefHeight="25.0" prefWidth="329.0" promptText="Passwort" />
       <Text layoutX="200.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bitte melden Sie sich mit Ihren Zugangsdaten an" textAlignment="CENTER" wrappingWidth="329.0">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Hyperlink fx:id="hyperLinkRegistrierung" layoutX="200.0" layoutY="341.0" onAction="#hyperLinkRegistrierungPressed" text="Noch kein Nutzer? Registrieren Sie sich hier" />
-      <Button fx:id="btnAnmeldung" layoutX="447.0" layoutY="378.0" mnemonicParsing="false" onAction="#btnAnmeldungPressed" text="Anmelden" textAlignment="CENTER">
+      <Hyperlink fx:id="hyperLinkRegistrierung" layoutX="200.0" layoutY="341.0" onMouseClicked="#hyperLinkRegistrierungClicked" text="Noch kein Nutzer? Registrieren Sie sich hier" />
+      <Button fx:id="btnAnmeldung" layoutX="447.0" layoutY="378.0" mnemonicParsing="false" onMouseClicked="#btnAnmeldungClicked" text="Anmelden" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <PasswordField fx:id="pwdFieldPasswort" layoutX="200.0" layoutY="276.0" prefHeight="25.0" prefWidth="329.0" promptText="Passwort" />
    </children>
 </AnchorPane>

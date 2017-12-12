@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * @author Michael Jahn
  */
-public class KernRaum extends Identifier {
+public class KernRaum extends Identifier implements Raum {
 	
 	private static List<KernRaum> raumListe;
 
@@ -60,10 +60,7 @@ public class KernRaum extends Identifier {
 		this.nummer = nummer;
 	}
 
-	/**
-	 * Gibt die Anzahl der Arbeitsplätze des Raumes zurück.
-	 * @return Anzahl der Arbeitsplätze des Raumes
-	 */
+	@Override
 	public int getArbeitsplaetze() {
 		return arbeitsplaetze;
 	}
@@ -80,10 +77,7 @@ public class KernRaum extends Identifier {
 		this.arbeitsplaetze = arbeitsplaetze;
 	}
 
-	/**
-	 * Gibt die Anzahl der Computer-Arbeitsplätze des Raumes zurück.
-	 * @return Computer-Arbeitsplätze des Raumes
-	 */
+	@Override
 	public int getComputerarbeitsplaetze() {
 		return computerarbeitsplaetze;
 	}
@@ -100,11 +94,8 @@ public class KernRaum extends Identifier {
 		this.computerarbeitsplaetze = computerarbeitsplaetze;
 	}
 
-	/**
-	 * Gibt zurück, ob der Raum behindertengerecht (Rollstuhlfahrer) ist.
-	 * @return Raum behindertengerecht
-	 */
-	public boolean isBehindertengerecht() {
+	@Override
+	public boolean isRollstuhlgerecht() {
 		return behindertengerecht;
 	}
 
@@ -112,7 +103,7 @@ public class KernRaum extends Identifier {
 	 * Setzt, ob der Raum behindertengerecht ist.
 	 * @param behindertengerecht ob behindertengerecht
 	 */
-	public void setBehindertengerecht(boolean behindertengerecht) {
+	public void setRollstuhlgerecht(boolean behindertengerecht) {
 		this.behindertengerecht = behindertengerecht;
 	}
 
@@ -128,25 +119,18 @@ public class KernRaum extends Identifier {
 		return reservierungen;
 	}
 
-	/**
-	 * Gibt die unveränderbare Liste der Reservierungen des Raumes zurück.
-	 * @return unveränderbare Liste der Reservierunge des Raumes
-	 */
+	@Override
 	public Collection<Reservierung> getUnmodifiableReservierungen() {
 		return Collections.unmodifiableCollection(this.getReservierungen());
 	}
 	
-	/**
-	 * Fügt eine Reservierung für den Raum hinzu und gibt zurück, 
-	 * ob die Hinzufügung tatsächlich geschehen ist.
-	 * @param reservierung Reservierung, die hinzugefügt werden soll
-	 * @return Reservierung tatsächlich hinzugefügt
-	 */
+	@Override
 	public boolean addReservierung(Reservierung reservierung)
 	{
 		return this.getReservierungen().add(reservierung);
 	}
 	
+	@Override
 	public boolean removeReservierung(Reservierung reservierung)
 	{
 		return this.getReservierungen().remove(reservierung);

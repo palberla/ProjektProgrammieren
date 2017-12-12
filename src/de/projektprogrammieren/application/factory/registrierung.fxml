@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.projektprogrammieren.application.controller.RegistrierungsController">
+   <children>
+      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="264.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Logo%20ROOM.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtFieldName" layoutX="200.0" layoutY="172.0" prefHeight="25.0" prefWidth="329.0" promptText="Name">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtFieldEMail" layoutX="199.0" layoutY="219.0" prefHeight="25.0" prefWidth="329.0" promptText="Emailadresse" />
+      <Text layoutX="200.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registrierung" underline="true" wrappingWidth="329.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Hyperlink fx:id="hyperLinkAnmeldung" layoutX="200.0" layoutY="355.0" onMouseClicked="#hyperLinkAnmeldungClicked" text="Bereits Nutzer? Melden Sie sich hier an" />
+      <Button fx:id="btnRegistrierung" layoutX="445.0" layoutY="378.0" mnemonicParsing="false" onMouseClicked="#btnRegistrierungClicked" text="Registrieren" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtFieldPasswort" layoutX="200.0" layoutY="263.0" prefHeight="25.0" prefWidth="329.0" promptText="Passwort" />
+      <TextField fx:id="txtFieldPasswortWiederholung" layoutX="200.0" layoutY="307.0" prefHeight="25.0" prefWidth="329.0" promptText="Passwort bestätigen" />
+      <PasswordField />
+   </children>
+</AnchorPane>

@@ -1,9 +1,6 @@
 package de.projektprogrammieren.kern;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 public interface Raum {
 	
@@ -14,24 +11,10 @@ public interface Raum {
 	public String getNummer();
 
 	/**
-	 * Setzt die Raumnummer des Raumes neu.
-	 * @param nummer Neue Raumnummer
-	 * @exception IllegalArgumentException bei NULL oder leerem String
-	 */
-	public void setNummer(String nummer);
-
-	/**
 	 * Gibt die Anzahl der Arbeitsplätze des Raumes zurück.
 	 * @return Anzahl der Arbeitsplätze des Raumes
 	 */
 	public int getArbeitsplaetze();
-
-	/**
-	 * Setzt die Anzahl der Arbeitsplätze des Raumes.
-	 * @param arbeitsplaetze Anzahl der Arbeitsplätze
-	 * @exception IllegalArgumentException bei negativer Zahl
-	 */
-	public void setArbeitsplaetze(int arbeitsplaetze);
 
 	/**
 	 * Gibt die Anzahl der Computer-Arbeitsplätze des Raumes zurück.
@@ -40,23 +23,10 @@ public interface Raum {
 	public int getComputerarbeitsplaetze();
 
 	/**
-	 * Setzt die Anzahl der Computer-Arbeitsplätze des Raumes.
-	 * @param computerarbeitsplaetze Anzahl der Computer-Arbeitsplätze
-	 * @exception IllegalArgumentException bei negativer Zahl
-	 */
-	public void setComputerarbeitsplaetze(int computerarbeitsplaetze);
-
-	/**
 	 * Gibt zurück, ob der Raum behindertengerecht (Rollstuhlfahrer) ist.
 	 * @return Raum behindertengerecht
 	 */
-	public boolean isBehindertengerecht();
-
-	/**
-	 * Setzt, ob der Raum behindertengerecht ist.
-	 * @param behindertengerecht ob behindertengerecht
-	 */
-	public void setBehindertengerecht(boolean behindertengerecht);
+	public boolean isRollstuhlgerecht();
 
 	/**
 	 * Gibt die unveränderbare Liste der Reservierungen des Raumes zurück.
@@ -72,5 +42,10 @@ public interface Raum {
 	 */
 	public boolean addReservierung(Reservierung reservierung);
 	
+	/**
+	 * Entfernt eine Reservierung
+	 * @param reservierung Reservierung, die entfernt werden soll
+	 * @return Reservierung wurde tatsächlich entfernt
+	 */
 	public boolean removeReservierung(Reservierung reservierung);
 }
