@@ -1,9 +1,11 @@
 package de.projektprogrammieren.kern;
 
+import de.projektprogrammieren.interfaces.Raum;
+
 /**
  * @author Michael Jahn
  */
-public class Reservierung extends Identifier {
+public class ReservierungImpl extends Identifier {
 	
 	private Zeitraum zeitraum = null;
 
@@ -15,14 +17,14 @@ public class Reservierung extends Identifier {
     /**
      * Nutzer, der den Raum reserviert hat
      */
-    private Nutzer nutzer;
+    private NutzerImpl nutzer;
     
     /**
      * Default constructor
      */
-    public Reservierung() {}
+    public ReservierungImpl() {}
     
-    public Reservierung(KernRaum raum, Nutzer nutzer)
+    public ReservierungImpl(RaumImpl raum, NutzerImpl nutzer)
     {
     	this.setRaum(raum);
     	this.setNutzer(nutzer);
@@ -62,11 +64,11 @@ public class Reservierung extends Identifier {
      * Gibt den Nutzer zurueck, der reserviert hat.
      * @return Nutzer der Reservierung
      */
-	public Nutzer getNutzer() {
+	public NutzerImpl getNutzer() {
 		return nutzer;
 	}
 
-	public void setNutzer(Nutzer nutzer) {
+	public void setNutzer(NutzerImpl nutzer) {
 		this.nutzer = nutzer;
 		this.nutzer.addReservierung(this);
 	}

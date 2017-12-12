@@ -1,5 +1,7 @@
 package de.projektprogrammieren.kern;
 
+import de.projektprogrammieren.interfaces.Identifiable;
+
 /**
  * @author Michael Jahn
  */

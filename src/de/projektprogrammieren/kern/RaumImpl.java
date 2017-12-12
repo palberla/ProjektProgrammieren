@@ -2,12 +2,14 @@ package de.projektprogrammieren.kern;
 
 import java.util.*;
 
+import de.projektprogrammieren.interfaces.Raum;
+
 /**
  * @author Michael Jahn
  */
-public class KernRaum extends Identifier implements Raum {
+public class RaumImpl extends Identifier implements Raum {
 	
-	private static List<KernRaum> raumListe;
+	private static List<RaumImpl> raumListe;
 
 	/**
 	 * Die Raumnummer.
@@ -32,12 +34,12 @@ public class KernRaum extends Identifier implements Raum {
 	/**
 	 * Liste aller Reservierungen des Raumes.
 	 */
-	private List<Reservierung> reservierungen;
+	private List<ReservierungImpl> reservierungen;
 	
 	/**
 	 * Default constructor
 	 */
-	public KernRaum() {}
+	public RaumImpl() {}
 	
 
 	/**
@@ -112,43 +114,43 @@ public class KernRaum extends Identifier implements Raum {
 	 * gibt die veränderbare Liste der Reservierungen des Raumes zurück.
 	 * @return Veränderbare Liste der Reservierungen des Raumes
 	 */
-	private List<Reservierung> getReservierungen() {
+	private List<ReservierungImpl> getReservierungen() {
 		if (this.reservierungen == null) {
-			this.reservierungen = new LinkedList<Reservierung>();
+			this.reservierungen = new LinkedList<ReservierungImpl>();
 		}
 		return reservierungen;
 	}
 
 	@Override
-	public Collection<Reservierung> getUnmodifiableReservierungen() {
+	public Collection<ReservierungImpl> getUnmodifiableReservierungen() {
 		return Collections.unmodifiableCollection(this.getReservierungen());
 	}
 	
 	@Override
-	public boolean addReservierung(Reservierung reservierung)
+	public boolean addReservierung(ReservierungImpl reservierung)
 	{
 		return this.getReservierungen().add(reservierung);
 	}
 	
 	@Override
-	public boolean removeReservierung(Reservierung reservierung)
+	public boolean removeReservierung(ReservierungImpl reservierung)
 	{
 		return this.getReservierungen().remove(reservierung);
 	}
 	
-	private static List<KernRaum> getRaumListe()
+	private static List<RaumImpl> getRaumListe()
 	{
-		if (KernRaum.raumListe == null) { KernRaum.raumListe = new ArrayList<KernRaum>(); }
-		return KernRaum.raumListe;
+		if (RaumImpl.raumListe == null) { RaumImpl.raumListe = new ArrayList<RaumImpl>(); }
+		return RaumImpl.raumListe;
 	}
 	
-	public static Collection<KernRaum> getUnmodifiableRaumListe()
+	public static Collection<RaumImpl> getUnmodifiableRaumListe()
 	{
-		return Collections.unmodifiableCollection(KernRaum.getRaumListe());
+		return Collections.unmodifiableCollection(RaumImpl.getRaumListe());
 	}
 	
-	public static boolean addRaum(KernRaum raum)
+	public static boolean addRaum(RaumImpl raum)
 	{
-		return KernRaum.getRaumListe().add(raum);
+		return RaumImpl.getRaumListe().add(raum);
 	}
 }

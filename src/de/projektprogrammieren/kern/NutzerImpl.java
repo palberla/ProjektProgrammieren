@@ -2,14 +2,15 @@ package de.projektprogrammieren.kern;
 
 import java.util.*;
 
+import de.projektprogrammieren.interfaces.Nutzer;
 import de.projektprogrammieren.util.EMailValidierer;
 
 /**
  * @author Michael Jahn
  */
-public class Nutzer extends Identifier {
+public class NutzerImpl extends Identifier implements Nutzer {
 
-	private static List<Nutzer> nutzerListe;
+	private static List<NutzerImpl> nutzerListe;
 	private static boolean modifiedNutzer = false;
 
 	/**
@@ -30,7 +31,7 @@ public class Nutzer extends Identifier {
 	/**
 	 * Die Liste der Reservierungen des Nutzers.
 	 */
-	private List<Reservierung> reservierungen;
+	private List<ReservierungImpl> reservierungen;
 
 	/**
 	 * Adminstatus des Nutzers.
@@ -40,7 +41,7 @@ public class Nutzer extends Identifier {
 	/**
 	 * Default constructor
 	 */
-	public Nutzer() {
+	public NutzerImpl() {
 	}
 
 	/**
@@ -122,7 +123,7 @@ public class Nutzer extends Identifier {
 	 * 
 	 * @return Unveränderliche Liste aller Reservierungen des Nutzers.
 	 */
-	public List<Reservierung> getUnmodifiableReservierungen() {
+	public List<ReservierungImpl> getUnmodifiableReservierungen() {
 		return Collections.unmodifiableList(this.getReservierungen());
 	}
 
@@ -132,9 +133,9 @@ public class Nutzer extends Identifier {
 	 * 
 	 * @return Die veränderbare Liste des Benutzer mit den Reservierungen.
 	 */
-	private List<Reservierung> getReservierungen() {
+	private List<ReservierungImpl> getReservierungen() {
 		if (this.reservierungen == null) {
-			this.reservierungen = new LinkedList<Reservierung>();
+			this.reservierungen = new LinkedList<ReservierungImpl>();
 		}
 		return this.reservierungen;
 	}
@@ -146,11 +147,11 @@ public class Nutzer extends Identifier {
 	 *            Die Reservierung, die hinzugefügt werden soll
 	 * @return Ob die Reservierung tatsächlich hinzugefügt wurde
 	 */
-	public boolean addReservierung(Reservierung reservierung) {
+	public boolean addReservierung(ReservierungImpl reservierung) {
 		return this.getReservierungen().add(reservierung);
 	}
 	
-	public boolean removeReservierung(Reservierung reservierung)
+	public boolean removeReservierung(ReservierungImpl reservierung)
 	{
 		return this.getReservierungen().remove(reservierung);
 	}
@@ -173,34 +174,34 @@ public class Nutzer extends Identifier {
 		this.isAdmin = isAdmin;
 	}
 
-	private static List<Nutzer> getNutzerListe() {
-		if (Nutzer.nutzerListe == null) {
-			Nutzer.nutzerListe = new LinkedList<Nutzer>();
+	private static List<NutzerImpl> getNutzerListe() {
+		if (NutzerImpl.nutzerListe == null) {
+			NutzerImpl.nutzerListe = new LinkedList<NutzerImpl>();
 		}
-		return Nutzer.nutzerListe;
+		return NutzerImpl.nutzerListe;
 	}
 
-	public static Collection<Nutzer> getUnmodifiableNutzerCollection() {
-		return Collections.unmodifiableCollection(Nutzer.getNutzerListe());
+	public static Collection<NutzerImpl> getUnmodifiableNutzerCollection() {
+		return Collections.unmodifiableCollection(NutzerImpl.getNutzerListe());
 	}
 
-	public static boolean addNutzer(Nutzer nutzer) {
-		boolean addedNutzer = Nutzer.getNutzerListe().add(nutzer);
+	public static boolean addNutzer(NutzerImpl nutzer) {
+		boolean addedNutzer = NutzerImpl.getNutzerListe().add(nutzer);
 		if (addedNutzer) {
-			Nutzer.modifiedNutzer = addedNutzer;
+			NutzerImpl.modifiedNutzer = addedNutzer;
 		}
 		return addedNutzer;
 	}
 
-	public static boolean removeNutzer(Nutzer nutzer) {
-		boolean removedNutzer = Nutzer.getNutzerListe().remove(nutzer);
+	public static boolean removeNutzer(NutzerImpl nutzer) {
+		boolean removedNutzer = NutzerImpl.getNutzerListe().remove(nutzer);
 		if (removedNutzer) {
-			Nutzer.modifiedNutzer = removedNutzer;
+			NutzerImpl.modifiedNutzer = removedNutzer;
 		}
 		return removedNutzer;
 	}
 	
 	public boolean modifiedNutzer() {
-		return Nutzer.modifiedNutzer;
+		return NutzerImpl.modifiedNutzer;
 	}
 }
