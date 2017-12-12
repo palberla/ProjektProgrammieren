@@ -1,15 +1,27 @@
 package de.projektprogrammieren.application.controller;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class ReservierungsController {
-	
-	private TextField txtFieldRaumNummer;
-	private TextField txtFieldZeitVon;
-	private TextField txtFieldZeitBis;
-	private TextField txtFieldNutzerName;
-	private Button btnBestätigen;
-	
-	protected void btnBestätigenClicked() {}
+
+	@FXML
+	TextField txtFieldRaumNummer;
+
+	@FXML
+	TextField txtFieldZeitVon;
+
+	@FXML
+	TextField txtFieldZeitBis;
+
+	@FXML
+	TextField txtFieldNutzerName;
+
+	@FXML
+	Button btnBestätigen;
+
+	@FXML
+	protected void btnBestätigenClicked() {
+	}
 }

@@ -1,5 +1,6 @@
 package de.projektprogrammieren.application.controller;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -11,21 +12,53 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 
 public class SuchController {
-	
-	private Image imgLogo;
-	private DatePicker datePickerDatum;
-	private CheckBox checkBoxBarrierefrei;
-	private TextField txtFieldArbeitsplaetze;
-	private TextField txtFieldComputerArbeitsplaetze;
-	private Button btnSuche;
-	private TableView tableViewSuchergebnis;
-	private Hyperlink hyperLinkAusloggen;
-	private SplitMenuButton splitMenuBtnZeitVon;
-	private SplitMenuButton splitMenuBtnZeitBis;
-	private ChoiceBox choiceBoxRaumNummer;
-	
-	protected void btnSucheClicked() {}
-	protected void detailReservierungClicked() {}
-	protected void sortTableViewSuchergebnis() {}
-	protected void hyperLinkAusloggenClicked() {}
+
+	@FXML
+	Image imgLogo;
+
+	@FXML
+	DatePicker datePickerDatum;
+
+	@FXML
+	CheckBox checkBoxBarrierefrei;
+
+	@FXML
+	TextField txtFieldArbeitsplaetze;
+
+	@FXML
+	TextField txtFieldComputerArbeitsplaetze;
+
+	@FXML
+	Button btnSuche;
+
+	@FXML
+	TableView tableViewSuchergebnis;
+
+	@FXML
+	Hyperlink hyperLinkAusloggen;
+
+	@FXML
+	SplitMenuButton splitMenuBtnZeitVon;
+
+	@FXML
+	SplitMenuButton splitMenuBtnZeitBis;
+
+	@FXML
+	ChoiceBox choiceBoxRaumNummer;
+
+	@FXML
+	protected void btnSucheClicked() {
+	}
+
+	@FXML
+	protected void detailReservierungClicked() {
+	}
+
+	@FXML
+	protected void sortTableViewSuchergebnis() {
+	}
+
+	@FXML
+	protected void hyperLinkAusloggenClicked() {
+	}
 }

@@ -1,19 +1,35 @@
 package de.projektprogrammieren.application.controller;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 
 public class RegistrierungsController {
-	
-	private TextField txtFieldName;
-	private TextField txtFieldEMail;
-	private Hyperlink hyperLinkAnmeldung;
-	private Button btnRegistrierung;
-	private TextField txtFieldPasswort;
-	private TextField txtFieldPasswortWiederholung;
-	
-	
-	protected void hyperLinkAnmeldungClicked() {}
-	protected void btnRegistrierungClicked() {}
+
+	@FXML
+	TextField txtFieldName;
+
+	@FXML
+	TextField txtFieldEMail;
+
+	@FXML
+	Hyperlink hyperLinkAnmeldung;
+
+	@FXML
+	Button btnRegistrierung;
+
+	@FXML
+	TextField txtFieldPasswort;
+
+	@FXML
+	TextField txtFieldPasswortWiederholung;
+
+	@FXML
+	protected void hyperLinkAnmeldungClicked() {
+	}
+
+	@FXML
+	protected void btnRegistrierungClicked() {
+	}
 }
