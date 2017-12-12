@@ -1,4 +1,4 @@
-package de.projektprogrammieren.kern;
+package de.projektprogrammieren.interfaces;
 
 public interface Identifiable {
 	

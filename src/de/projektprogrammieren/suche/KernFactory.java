@@ -1,4 +1,4 @@
-package de.projektprogrammieren.kern.factory;
+package de.projektprogrammieren.suche;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Map;
 
-import de.projektprogrammieren.kern.Nutzer;
-import de.projektprogrammieren.kern.Raum;
+import de.projektprogrammieren.interfaces.Raum;
+import de.projektprogrammieren.kern.NutzerImpl;
 
 public class KernFactory {
 	
@@ -16,8 +16,8 @@ public class KernFactory {
 	private Collection<Raum> raumCollection = null;
 	private Map<String, Raum> raumNummerMap = null;
 	
-	private Collection<Nutzer> nutzerCollection = null;
-	private Map<String, Nutzer> nutzerEMailMap = null;
+	private Collection<NutzerImpl> nutzerCollection = null;
+	private Map<String, NutzerImpl> nutzerEMailMap = null;
 	
 	private KernFactory() {}
 	
@@ -63,9 +63,9 @@ public class KernFactory {
 		this.synconizeRaumCollection();
 	}
 	
-	private Map<String, Nutzer> getNutzerEMailMap()
+	private Map<String, NutzerImpl> getNutzerEMailMap()
 	{
-		if (this.nutzerEMailMap == null) { this.nutzerEMailMap = new Hashtable<String, Nutzer>(); }
+		if (this.nutzerEMailMap == null) { this.nutzerEMailMap = new Hashtable<String, NutzerImpl>(); }
 		return this.nutzerEMailMap;
 	}
 	
@@ -74,18 +74,18 @@ public class KernFactory {
 		this.nutzerCollection = this.getNutzerEMailMap().values();
 	}
 	
-	private Collection<Nutzer> getNutzerCollection()
+	private Collection<NutzerImpl> getNutzerCollection()
 	{
-		if (this.nutzerCollection == null) { this.nutzerCollection = new ArrayList<Nutzer>(); }
+		if (this.nutzerCollection == null) { this.nutzerCollection = new ArrayList<NutzerImpl>(); }
 		return this.nutzerCollection;
 	}
 	
-	public Collection<Nutzer> getUnmodifiableNutzerCollection()
+	public Collection<NutzerImpl> getUnmodifiableNutzerCollection()
 	{
 		return Collections.unmodifiableCollection(this.getNutzerCollection());
 	}
 	
-	public Nutzer getNutzer(String emailString)
+	public NutzerImpl getNutzer(String emailString)
 	{
 		return this.getNutzerEMailMap().get(emailString);
 	}
@@ -95,25 +95,25 @@ public class KernFactory {
 		return this.getNutzerEMailMap().containsKey(emailString);
 	}
 	
-	public Nutzer addNutzer(Nutzer nutzer)
+	public NutzerImpl addNutzer(NutzerImpl nutzer)
 	{
-		Nutzer returnNutzer = this.getNutzerEMailMap().put(nutzer.getEmail(), nutzer);
+		NutzerImpl returnNutzer = this.getNutzerEMailMap().put(nutzer.getEmail(), nutzer);
 		this.synconizeNutzerCollection();
 		return returnNutzer;
 	}
 	
-	public void addNutzerCollection(Collection<Nutzer> nutzerCollection)
+	public void addNutzerCollection(Collection<NutzerImpl> nutzerCollection)
 	{
-		for (Nutzer nutzer : nutzerCollection)
+		for (NutzerImpl nutzer : nutzerCollection)
 		{
 			this.getNutzerEMailMap().put(nutzer.getEmail(), nutzer);
 		}
 		this.synconizeNutzerCollection();
 	}
 	
-	public Nutzer removeNutzer(Nutzer nutzer)
+	public NutzerImpl removeNutzer(NutzerImpl nutzer)
 	{
-		Nutzer returnNutzer = this.getNutzerEMailMap().remove(nutzer.getEmail());
+		NutzerImpl returnNutzer = this.getNutzerEMailMap().remove(nutzer.getEmail());
 		this.synconizeNutzerCollection();
 		return returnNutzer;
 	}

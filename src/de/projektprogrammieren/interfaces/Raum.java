@@ -1,6 +1,8 @@
-package de.projektprogrammieren.kern;
+package de.projektprogrammieren.interfaces;
 
 import java.util.Collection;
+
+import de.projektprogrammieren.kern.ReservierungImpl;
 
 public interface Raum {
 	
@@ -32,7 +34,7 @@ public interface Raum {
 	 * Gibt die unveränderbare Liste der Reservierungen des Raumes zurück.
 	 * @return unveränderbare Liste der Reservierunge des Raumes
 	 */
-	public Collection<Reservierung> getUnmodifiableReservierungen();
+	public Collection<ReservierungImpl> getUnmodifiableReservierungen();
 	
 	/**
 	 * Fügt eine Reservierung für den Raum hinzu und gibt zurück, 
@@ -40,12 +42,12 @@ public interface Raum {
 	 * @param reservierung Reservierung, die hinzugefügt werden soll
 	 * @return Reservierung tatsächlich hinzugefügt
 	 */
-	public boolean addReservierung(Reservierung reservierung);
+	public boolean addReservierung(ReservierungImpl reservierung);
 	
 	/**
 	 * Entfernt eine Reservierung
 	 * @param reservierung Reservierung, die entfernt werden soll
 	 * @return Reservierung wurde tatsächlich entfernt
 	 */
-	public boolean removeReservierung(Reservierung reservierung);
+	public boolean removeReservierung(ReservierungImpl reservierung);
 }

@@ -1,6 +1,10 @@
-package de.projektprogrammieren.kern;
+package de.projektprogrammieren.suche;
 
 import java.util.*;
+
+import de.projektprogrammieren.kern.RaumImpl;
+import de.projektprogrammieren.kern.NutzerImpl;
+import de.projektprogrammieren.kern.SuchRaumImpl;
 
 /**
  * @author Michael Jahn
@@ -35,12 +39,12 @@ public class Suche {
     /**
      * Suchkriterium: Angeforderter Raum
      */
-    private KernRaum raum;
+    private RaumImpl raum;
 
     /**
      * Suchkriterium: Nutzer der sucht
      */
-    public Nutzer nutzer;
+    public NutzerImpl nutzer;
     
     /**
      * Default constructor
@@ -133,7 +137,7 @@ public class Suche {
      * Gibt den Raum, der reserviert werden soll zurück.
      * @return Zu reservierender Raum
      */
-	public KernRaum getRaum() {
+	public RaumImpl getRaum() {
 		return raum;
 	}
 
@@ -141,7 +145,7 @@ public class Suche {
 	 * Setzt den zu reservierenden Raum
 	 * @param raum zu reservierender Raum
 	 */
-	public void setRaum(KernRaum raum) {
+	public void setRaum(RaumImpl raum) {
 		this.raum = raum;
 	}
 
@@ -149,7 +153,7 @@ public class Suche {
      * Gibt den Nutzer zurück, der sucht.
      * @return Nutzer der sucht.
      */
-	public Nutzer getNutzer() {
+	public NutzerImpl getNutzer() {
 		return nutzer;
 	}
 
@@ -157,7 +161,7 @@ public class Suche {
 	 * Setzt den Nutzer, der sucht.
 	 * @param nutzer Nutzer der sucht
 	 */
-	public void setNutzer(Nutzer nutzer) {
+	public void setNutzer(NutzerImpl nutzer) {
 		this.nutzer = nutzer;
 	}
 
@@ -165,7 +169,7 @@ public class Suche {
      * @return Liste mit den Räumen, die auf die Anfrage passen.
      * @throws KannNichtSuchenException
      */
-    public Set<SuchRaum> getSuchergebnis() {
+    public Set<SuchRaumImpl> getSuchergebnis() {
         /*
          * Kriterien, ob eine Suche überhaupt beginnt.
          * Wenn diese nicht erfüllt werden, wird eine Exception geworfen
@@ -173,7 +177,7 @@ public class Suche {
          * 2. Gibt es Räume, nach denen gesucht werden kann?
          */
     	if (this.getNutzer() == null) { /* Fehlender Nutzer Exception */ }
-    	if (KernRaum.getUnmodifiableRaumListe().isEmpty()) { /* Keine Räume zum Suchen Exception */ }
+    	if (RaumImpl.getUnmodifiableRaumListe().isEmpty()) { /* Keine Räume zum Suchen Exception */ }
     	
     	/* wenn nach einem speziellen Raum gesucht wird, ist nur dieser Raum in der Liste */
     	/* Mindestsuchbedingungen? */
