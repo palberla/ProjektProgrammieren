@@ -1,15 +1,13 @@
 package de.projektprogrammieren.suche;
 
-import java.util.*;
-
-import de.projektprogrammieren.kern.RaumImpl;
-import de.projektprogrammieren.kern.NutzerImpl;
-import de.projektprogrammieren.kern.SuchRaumImpl;
+import de.projektprogrammieren.interfaces.Nutzer;
+import de.projektprogrammieren.interfaces.Raum;
+import de.projektprogrammieren.kern.Zeitraum;
 
 /**
  * @author Michael Jahn
  */
-public class Suche {
+public class SuchAnfrage {
 
     /**
      * Suchkriterium: Mindesanzahl der Arbeitplätze
@@ -22,14 +20,9 @@ public class Suche {
     private int computerarbeitsplaetze;
 
     /**
-     * Suchkriterium: Zeit Beginn der Reservierung
+     * Suchkriterium: Zeit Beginn bis Ende der Reservierung
      */
-    private Calendar zeitAb;
-
-    /**
-     * Suchkriterium: Zeit Ende der Reservierung
-     */
-    private Calendar zeitBis;
+    private Zeitraum zeitraum;
 
     /**
      * Suchkriterium: Muß der Raum behindertengerecht sein
@@ -39,17 +32,17 @@ public class Suche {
     /**
      * Suchkriterium: Angeforderter Raum
      */
-    private RaumImpl raum;
+    private Raum raum;
 
     /**
      * Suchkriterium: Nutzer der sucht
      */
-    public NutzerImpl nutzer;
+    public Nutzer nutzer;
     
     /**
      * Default constructor
      */
-    public Suche() {}
+    public SuchAnfrage() {}
     
     
 
@@ -89,32 +82,16 @@ public class Suche {
      * Gibt die Zeit an, ab wann ein Raum reserviert werden soll.
      * @return Anfang der Reservierung
      */
-	public Calendar getZeitAb() {
-		return zeitAb;
+	public Zeitraum getZeitraum() {
+		return zeitraum;
 	}
 
 	/**
 	 * Setzt die Zeit, ab wann der Raum reserviert werden soll.
 	 * @param zeitAb Anfang der Reservierung
 	 */
-	public void setZeitAb(Calendar zeitAb) {
-		this.zeitAb = zeitAb;
-	}
-
-    /**
-     * Gibt die Zeit an, bis wann ein Raum reserviert werden soll.
-     * @return Ende der Reservierung
-     */
-	public Calendar getZeitBis() {
-		return zeitBis;
-	}
-
-	/**
-	 * Setzt die Zeit, bis wann die Reservierung enden soll.
-	 * @param zeitBis Ende der Reservierung
-	 */
-	public void setZeitBis(Calendar zeitBis) {
-		this.zeitBis = zeitBis;
+	public void setZeitraum(Zeitraum zeitraum) {
+		this.zeitraum = zeitraum;
 	}
 
     /**
@@ -137,7 +114,7 @@ public class Suche {
      * Gibt den Raum, der reserviert werden soll zurück.
      * @return Zu reservierender Raum
      */
-	public RaumImpl getRaum() {
+	public Raum getRaum() {
 		return raum;
 	}
 
@@ -145,7 +122,7 @@ public class Suche {
 	 * Setzt den zu reservierenden Raum
 	 * @param raum zu reservierender Raum
 	 */
-	public void setRaum(RaumImpl raum) {
+	public void setRaum(Raum raum) {
 		this.raum = raum;
 	}
 
@@ -153,7 +130,7 @@ public class Suche {
      * Gibt den Nutzer zurück, der sucht.
      * @return Nutzer der sucht.
      */
-	public NutzerImpl getNutzer() {
+	public Nutzer getNutzer() {
 		return nutzer;
 	}
 
@@ -161,7 +138,7 @@ public class Suche {
 	 * Setzt den Nutzer, der sucht.
 	 * @param nutzer Nutzer der sucht
 	 */
-	public void setNutzer(NutzerImpl nutzer) {
+	public void setNutzer(Nutzer nutzer) {
 		this.nutzer = nutzer;
 	}
 
@@ -169,21 +146,21 @@ public class Suche {
      * @return Liste mit den Räumen, die auf die Anfrage passen.
      * @throws KannNichtSuchenException
      */
-    public Set<SuchRaumImpl> getSuchergebnis() {
-        /*
-         * Kriterien, ob eine Suche überhaupt beginnt.
-         * Wenn diese nicht erfüllt werden, wird eine Exception geworfen
-         * 1. Gibt es einen Nutzer, der sucht?
-         * 2. Gibt es Räume, nach denen gesucht werden kann?
-         */
-    	if (this.getNutzer() == null) { /* Fehlender Nutzer Exception */ }
-    	if (RaumImpl.getUnmodifiableRaumListe().isEmpty()) { /* Keine Räume zum Suchen Exception */ }
-    	
-    	/* wenn nach einem speziellen Raum gesucht wird, ist nur dieser Raum in der Liste */
-    	/* Mindestsuchbedingungen? */
-    	/* -> Zeitr
-    	/* Wird ein Raum gesucht? */
-        return null;
-        /* SQL - Abfrage erstellen aus der Suchklasse -> Liste mit RaumIds, mit denen  */
-    }
+//    public Set<SuchRaumImpl> getSuchergebnis() {
+//        /*
+//         * Kriterien, ob eine Suche überhaupt beginnt.
+//         * Wenn diese nicht erfüllt werden, wird eine Exception geworfen
+//         * 1. Gibt es einen Nutzer, der sucht?
+//         * 2. Gibt es Räume, nach denen gesucht werden kann?
+//         */
+//    	if (this.getNutzer() == null) { /* Fehlender Nutzer Exception */ }
+//    	// if (Raum.getUnmodifiableRaumListe().isEmpty()) { /* Keine Räume zum Suchen Exception */ }
+//    	
+//    	/* wenn nach einem speziellen Raum gesucht wird, ist nur dieser Raum in der Liste */
+//    	/* Mindestsuchbedingungen? */
+//    	/* -> Zeitr
+//    	/* Wird ein Raum gesucht? */
+//        return null;
+//        /* SQL - Abfrage erstellen aus der Suchklasse -> Liste mit RaumIds, mit denen  */
+//    }
 }

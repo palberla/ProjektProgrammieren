@@ -9,7 +9,7 @@ import java.util.Map;
 import de.projektprogrammieren.interfaces.Raum;
 import de.projektprogrammieren.kern.NutzerImpl;
 
-public class KernFactory {
+public class SuchErgebnis {
 	
 	private Collection<Raum> raumCollection = null;
 	private Map<String, Raum> raumNummerMap = null;
@@ -17,7 +17,7 @@ public class KernFactory {
 	private Collection<NutzerImpl> nutzerCollection = null;
 	private Map<String, NutzerImpl> nutzerEMailMap = null;
 	
-	public KernFactory() {}
+	public SuchErgebnis() {}
 	
 	private Map<String, Raum> getRaumNummerMap()
 	{
