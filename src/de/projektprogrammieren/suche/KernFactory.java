@@ -11,15 +11,13 @@ import de.projektprogrammieren.kern.NutzerImpl;
 
 public class KernFactory {
 	
-	private static KernFactory INSTANCE = null;
-	
 	private Collection<Raum> raumCollection = null;
 	private Map<String, Raum> raumNummerMap = null;
 	
 	private Collection<NutzerImpl> nutzerCollection = null;
 	private Map<String, NutzerImpl> nutzerEMailMap = null;
 	
-	private KernFactory() {}
+	public KernFactory() {}
 	
 	private Map<String, Raum> getRaumNummerMap()
 	{
@@ -117,12 +115,4 @@ public class KernFactory {
 		this.synconizeNutzerCollection();
 		return returnNutzer;
 	}
-	
-	public static KernFactory getInstance()
-	{
-		if (INSTANCE == null) { INSTANCE = new KernFactory(); }
-		return INSTANCE;
-	}
-	
-	
 }
