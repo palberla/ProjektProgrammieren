@@ -8,18 +8,18 @@ import de.projektprogrammieren.interfaces.Identifiable;
 public abstract class Identifier implements Identifiable {
 
 	/**
-	 * Die Identifikationsnummer
+	 * Die Identifikationsnummer. -1 bedeutet, 
+	 * daß das Objekt noch nicht in die Datenbank
+	 * übertragen wurde. 
 	 */
-	private int id;
+	private int id = -1;
+	
+	protected Identifier() {}
 
 	@Override
 	public int getId() {
 		return this.id;
 	}
-
-	@Override
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
+	public void setId(int id) { this.id = id; }
 }

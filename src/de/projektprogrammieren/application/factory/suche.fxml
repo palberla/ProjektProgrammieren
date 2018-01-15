@@ -13,7 +13,7 @@
             <Image url="@Logo%20ROOM.png" />
          </image>
       </ImageView>
-      <DatePicker fx:id="datePickerDatum" layoutX="162.0" layoutY="154.0" promptText="Beginn des Zeitraums" />
+      <DatePicker fx:id="datePickerDatum" layoutX="162.0" layoutY="154.0" promptText="Datum der Reservierung" />
       <CheckBox fx:id="checkBoxBarrierefrei" layoutX="486.0" layoutY="197.0" mnemonicParsing="false" text="Barrierefrei" />
       <TextField fx:id="txtFieldArbeitsplaetze" layoutX="162.0" layoutY="193.0" prefHeight="25.0" prefWidth="115.0" promptText="Arbeitsplätze">
          <tooltip>
@@ -53,17 +53,30 @@
       </Hyperlink>
       <SplitMenuButton fx:id="splitMenuBtnZeitVon" layoutX="390.0" layoutY="154.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Von">
         <items>
-          <MenuItem mnemonicParsing="false" text="08:00" />
-          <MenuItem mnemonicParsing="false" text="08:30" />
-            <MenuItem mnemonicParsing="false" text="09:00" />
+          <MenuItem fx:id="menuItem08" mnemonicParsing="false" text="08:00" />
+          <MenuItem fx:id="menuItem0830" mnemonicParsing="false" text="08:30" />
+            <MenuItem fx:id="menuItem09" mnemonicParsing="false" text="09:00" />
+            <MenuItem fx:id="menuItem0930" mnemonicParsing="false" text="09:30" />
+            <MenuItem fx:id="menuItem10" mnemonicParsing="false" text="10:00" />
         </items>
       </SplitMenuButton>
       <SplitMenuButton fx:id="splitMenuBtnZeitBis" layoutX="496.0" layoutY="154.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Bis">
         <items>
-          <MenuItem mnemonicParsing="false" text="08:30" />
-          <MenuItem mnemonicParsing="false" text="09:00" />
+          <MenuItem fx:id="menuItem0830" mnemonicParsing="false" text="08:30" />
+          <MenuItem fx:id="menuItem09" mnemonicParsing="false" text="09:00" />
+            <MenuItem fx:id="menuItem0930" mnemonicParsing="false" text="09:30" />
+            <MenuItem fx:id="menuItem10" mnemonicParsing="false" text="10:00" />
+            <MenuItem fx:id="menuItem1030" mnemonicParsing="false" text="10:30" />
         </items>
       </SplitMenuButton>
-      <ChoiceBox fx:id="choiceBoxRaumNummer" layoutX="159.0" layoutY="112.0" prefHeight="25.0" prefWidth="410.0" />
+      <SplitMenuButton fx:id="splitMenuBtnRaumnummer" layoutX="162.0" layoutY="112.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="404.0" text="Raumnummer">
+        <items>
+          <MenuItem fx:id="menuItemA001" mnemonicParsing="false" text="A001" />
+          <MenuItem fx:id="menuItemA002" mnemonicParsing="false" text="A002" />
+            <MenuItem fx:id="menuItemA003" mnemonicParsing="false" text="A003" />
+            <MenuItem fx:id="menuItemA004" mnemonicParsing="false" text="A004" />
+            <MenuItem fx:id="menuItemA005" mnemonicParsing="false" text="A005" />
+        </items>
+      </SplitMenuButton>
    </children>
 </AnchorPane>

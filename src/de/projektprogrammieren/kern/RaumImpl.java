@@ -3,13 +3,12 @@ package de.projektprogrammieren.kern;
 import java.util.*;
 
 import de.projektprogrammieren.interfaces.Raum;
+import de.projektprogrammieren.interfaces.Reservierung;
 
 /**
  * @author Michael Jahn
  */
 public class RaumImpl extends Identifier implements Raum {
-	
-	private static List<RaumImpl> raumListe;
 
 	/**
 	 * Die Raumnummer.
@@ -34,18 +33,15 @@ public class RaumImpl extends Identifier implements Raum {
 	/**
 	 * Liste aller Reservierungen des Raumes.
 	 */
-	private List<ReservierungImpl> reservierungen;
+	private List<Reservierung> reservierungen;
 	
 	/**
 	 * Default constructor
 	 */
-	public RaumImpl() {}
+	protected RaumImpl() {}
 	
 
-	/**
-	 * Gibt die Raumnummer des Raumes zurück.
-	 * @return Raumnummer des Raumes
-	 */
+	@Override
 	public String getNummer() {
 		return nummer;
 	}
@@ -73,7 +69,7 @@ public class RaumImpl extends Identifier implements Raum {
 	 * @exception IllegalArgumentException bei negativer Zahl
 	 */
 	public void setArbeitsplaetze(int arbeitsplaetze) {
-		if (arbeitsplaetze > 0) {
+		if (arbeitsplaetze < 0) {
 			throw new IllegalArgumentException("Arbeitsplaetze müssen mindestens 0 sein!");
 		}
 		this.arbeitsplaetze = arbeitsplaetze;
@@ -90,7 +86,7 @@ public class RaumImpl extends Identifier implements Raum {
 	 * @exception IllegalArgumentException bei negativer Zahl
 	 */
 	public void setComputerarbeitsplaetze(int computerarbeitsplaetze) {
-		if (computerarbeitsplaetze > 0) {
+		if (computerarbeitsplaetze < 0) {
 			throw new IllegalArgumentException("Computerarbeitsplaetze müssen mindestens 0 sein!");
 		}
 		this.computerarbeitsplaetze = computerarbeitsplaetze;
@@ -114,43 +110,25 @@ public class RaumImpl extends Identifier implements Raum {
 	 * gibt die veränderbare Liste der Reservierungen des Raumes zurück.
 	 * @return Veränderbare Liste der Reservierungen des Raumes
 	 */
-	private List<ReservierungImpl> getReservierungen() {
+	private List<Reservierung> getReservierungen() {
 		if (this.reservierungen == null) {
-			this.reservierungen = new LinkedList<ReservierungImpl>();
+			this.reservierungen = new LinkedList<Reservierung>();
 		}
 		return reservierungen;
 	}
 
 	@Override
-	public Collection<ReservierungImpl> getUnmodifiableReservierungen() {
+	public Collection<Reservierung> getUnmodifiableReservierungen() {
 		return Collections.unmodifiableCollection(this.getReservierungen());
 	}
 	
-	@Override
-	public boolean addReservierung(ReservierungImpl reservierung)
+	public boolean addReservierung(Reservierung reservierung)
 	{
 		return this.getReservierungen().add(reservierung);
 	}
 	
-	@Override
-	public boolean removeReservierung(ReservierungImpl reservierung)
+	public boolean removeReservierung(Reservierung reservierung)
 	{
 		return this.getReservierungen().remove(reservierung);
-	}
-	
-	private static List<RaumImpl> getRaumListe()
-	{
-		if (RaumImpl.raumListe == null) { RaumImpl.raumListe = new ArrayList<RaumImpl>(); }
-		return RaumImpl.raumListe;
-	}
-	
-	public static Collection<RaumImpl> getUnmodifiableRaumListe()
-	{
-		return Collections.unmodifiableCollection(RaumImpl.getRaumListe());
-	}
-	
-	public static boolean addRaum(RaumImpl raum)
-	{
-		return RaumImpl.getRaumListe().add(raum);
 	}
 }

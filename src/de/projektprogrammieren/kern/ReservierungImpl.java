@@ -1,78 +1,56 @@
 package de.projektprogrammieren.kern;
 
+import de.projektprogrammieren.interfaces.Nutzer;
 import de.projektprogrammieren.interfaces.Raum;
+import de.projektprogrammieren.interfaces.Reservierung;
+import de.projektprogrammieren.interfaces.Zeitraum;
 
 /**
  * @author Michael Jahn
  */
-public class ReservierungImpl extends Identifier {
+public final class ReservierungImpl extends Identifier implements Reservierung {
 	
-	private Zeitraum zeitraum = null;
+	/**
+	 * Der Zeitraum der Reservierung.
+	 */
+	private Zeitraum zeitraum;
 
     /**
      * Der reservierte Raum
      */
-    private Raum raum;
+	private Raum raum;
 
     /**
      * Nutzer, der den Raum reserviert hat
      */
-    private NutzerImpl nutzer;
-    
-    /**
-     * Default constructor
-     */
-    public ReservierungImpl() {}
-    
-    public ReservierungImpl(RaumImpl raum, NutzerImpl nutzer)
-    {
-    	this.setRaum(raum);
-    	this.setNutzer(nutzer);
-    }
-    
-    public boolean removeReservierung()
-    {
-    	this.raum.removeReservierung(this);
-    	this.nutzer.removeReservierung(this);
-    	return true;
-    }
+	private Nutzer nutzer;
 	
-	public Zeitraum getZeitraum()
-	{
+	protected ReservierungImpl() {}
+
+	@Override
+	public Zeitraum getZeitraum() {
 		return this.zeitraum;
 	}
-	
-	public void setZeitraum(Zeitraum zeitraum)
-	{
-		this.zeitraum = zeitraum;
+
+	@Override
+	public Raum getRaum() {
+		return this.raum;
 	}
 
-    /**
-     * Gibt den Raum, der reserviert wurde.
-     * @return Raum der Reservierung
-     */
-	public Raum getRaum() {
-		return raum;
+	@Override
+	public Nutzer getNutzer() {
+		return this.nutzer;
+	}
+
+	public void setZeitraum(Zeitraum zeitraum) {
+		this.zeitraum = zeitraum;
 	}
 
 	public void setRaum(Raum raum) {
 		this.raum = raum;
-		this.raum.addReservierung(this);
 	}
 
-    /**
-     * Gibt den Nutzer zurueck, der reserviert hat.
-     * @return Nutzer der Reservierung
-     */
-	public NutzerImpl getNutzer() {
-		return nutzer;
-	}
-
-	public void setNutzer(NutzerImpl nutzer) {
+	public void setNutzer(Nutzer nutzer) {
 		this.nutzer = nutzer;
-		this.nutzer.addReservierung(this);
 	}
-    
-    
-    
 }

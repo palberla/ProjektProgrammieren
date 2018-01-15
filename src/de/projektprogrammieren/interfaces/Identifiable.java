@@ -8,11 +8,4 @@ public interface Identifiable {
 	 * @return die Identifikationsnummer
 	 */
 	public int getId();
-
-	/**
-	 * Setzt die Identifikationsnummer
-	 * 
-	 * @param id neue Identifikationsnummer
-	 */
-	public void setId(int id);
 }

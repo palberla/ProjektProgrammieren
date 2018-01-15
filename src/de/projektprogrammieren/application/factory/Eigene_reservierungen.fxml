@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="169.0" layoutY="233.0" prefHeight="250.0" prefWidth="404.0">
+         <content>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="390.0">
+               <children>
+                  <TableView layoutX="8.0" layoutY="7.0" prefHeight="370.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columns>
+                        <TableColumn prefWidth="120.0" text="Raumnummer" />
+                        <TableColumn prefWidth="84.0" text="Computer" />
+                        <TableColumn prefWidth="87.0" text="Barrierefrei" />
+                        <TableColumn prefWidth="98.0" text="Arbeitsplätze" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="264.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Logo%20ROOM.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="177.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Eigene Reservierungen" underline="true" wrappingWidth="329.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="177.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gewünschter Tag:" />
+      <DatePicker layoutX="353.0" layoutY="177.0" prefHeight="25.0" prefWidth="206.0" promptText="Für Gesamtübersicht freilassen" />
+      <Hyperlink layoutX="512.0" layoutY="82.0" text="Ausloggen">
+         <font>
+            <Font size="9.0" />
+         </font>
+      </Hyperlink>
+      <Button layoutX="592.0" layoutY="499.0" mnemonicParsing="false" text="Zurück" />
+   </children>
+</AnchorPane>

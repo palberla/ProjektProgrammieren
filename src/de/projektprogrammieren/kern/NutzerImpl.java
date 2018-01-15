@@ -3,15 +3,17 @@ package de.projektprogrammieren.kern;
 import java.util.*;
 
 import de.projektprogrammieren.interfaces.Nutzer;
+import de.projektprogrammieren.interfaces.Raum;
+import de.projektprogrammieren.interfaces.Reservierung;
+import de.projektprogrammieren.interfaces.SuchVerwaltung;
+import de.projektprogrammieren.interfaces.Zeitraum;
 import de.projektprogrammieren.util.EMailValidierer;
+import de.projektprogrammieren.util.PasswortValidierer;
 
 /**
  * @author Michael Jahn
  */
 public class NutzerImpl extends Identifier implements Nutzer {
-
-	private static List<NutzerImpl> nutzerListe;
-	private static boolean modifiedNutzer = false;
 
 	/**
 	 * Der Name des Nutzers.
@@ -31,100 +33,87 @@ public class NutzerImpl extends Identifier implements Nutzer {
 	/**
 	 * Die Liste der Reservierungen des Nutzers.
 	 */
-	private List<ReservierungImpl> reservierungen;
+	private List<Reservierung> reservierungen = null;
 
 	/**
 	 * Adminstatus des Nutzers.
 	 */
 	private boolean isAdmin;
+	
+	/**
+	 * Link auf die Suchverwaltung
+	 */
+	private SuchVerwaltung suchVerwaltung = EntityManager.getSuchVerwaltung();
 
 	/**
 	 * Default constructor
 	 */
-	public NutzerImpl() {
-	}
+	protected NutzerImpl() {}
 
-	/**
-	 * Gibt den Namen des Benutzers zurück.
-	 * 
-	 * @return Name des Benutzers
-	 */
+	@Override
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * Setzt den Namen des Benutzers. Ist der String NULL oder leer wird eine
-	 * IllegalArgumentException geworfen.
-	 * 
-	 * @param name
-	 *            Neuer Name des Benutzers
-	 * @exception IllegalArgumentException bei NULL oder leerem String
-	 */
+	@Override
 	public void setName(String name) {
+		setName(name, true);
+	}
+	
+	public void setName(String name, boolean datenbank) {
 		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException("Kein gültiger Name!");
 		}
 		this.name = name;
+		if (datenbank) { updateDatenbank(); }
 	}
 
-	/**
-	 * Gibt die E-Mailadresse des Nutzers zurück.
-	 * 
-	 * @return E-Mailadresse des Nutzers
-	 */
+	@Override
 	public String getEmail() {
 		return email;
 	}
 
-	/**
-	 * Setzt die neue E-Mailadresse des Benutzers. Ist der String NULL, leer oder
-	 * eine ungültige E-Mailadresse wird eine IllegalArgumentException geworfen.
-	 * 
-	 * @param email
-	 *            Neue E-Mailadresse des Benutzers
-	 * @exception IllegalArgumentException bei NULL oder leerem String
-	 */
+	@Override
 	public void setEmail(String email) {
+		setEmail(email, true);
+	}
+	
+	public void setEmail(String email, boolean datenbank) {
 		if (!(new EMailValidierer(email).isValidEMail())) {
 			throw new IllegalArgumentException("Keine gültige E-Mail!!");
 		}
 		this.email = email;
+		if (datenbank) { updateDatenbank(); }
 	}
 
-	/**
-	 * Gibt das Passwort des Nutzers zurück.
-	 * 
-	 * @return Passwort des Nutzers
-	 */
+	@Override
 	public String getPasswort() {
 		return passwort;
 	}
 
-	/**
-	 * Setzt das Passwort des Benutzers. Ist der String NULL oder leer wird eine
-	 * IllegalArgumentException geworfen.
-	 * 
-	 * @param passwort
-	 *            Neues Passwort des Benutzers
-	 * @exception IllegalArgumentException bei NULL oder leerem String
-	 */
+	@Override
 	public void setPasswort(String passwort) {
-		if (passwort == null || passwort.isEmpty()) {
+		setPasswort(passwort, true);
+	}
+	
+	public void setPasswort(String passwort, boolean datenbank) {
+		if (new PasswortValidierer(passwort).isValidPasswort()) {
 			throw new IllegalArgumentException("Kein gültiges Passwort!");
 		}
 		this.passwort = passwort;
+		if (datenbank) { updateDatenbank(); }
 	}
+	
+	private void updateDatenbank() { suchVerwaltung.updateNutzer(this); }
 
-	/**
-	 * Es wird eine unveränderliche Liste des Benutzers mit den Reservierungen
-	 * zurückgegeben. Bei Hinzufügungen bitte addReservierung(reservierung)
-	 * benutzen.
-	 * 
-	 * @return Unveränderliche Liste aller Reservierungen des Nutzers.
-	 */
-	public List<ReservierungImpl> getUnmodifiableReservierungen() {
+	@Override
+	public List<Reservierung> getUnmodifiableReservierungen() {
 		return Collections.unmodifiableList(this.getReservierungen());
+	}
+	
+	public void setNeueReservierungenListe()
+	{
+		this.reservierungen = new LinkedList<Reservierung>();
 	}
 
 	/**
@@ -133,33 +122,36 @@ public class NutzerImpl extends Identifier implements Nutzer {
 	 * 
 	 * @return Die veränderbare Liste des Benutzer mit den Reservierungen.
 	 */
-	private List<ReservierungImpl> getReservierungen() {
+	public List<Reservierung> getReservierungen() {
+		// TODO Nachladen von Reservierungen!
+		// Hier lädt er keine Reservierungen.
+		// Diese werden erst nachgeladen, sobald
+		// die Reservierungen des Nutzers angefragt werden.
+		// Dann werden die dazu geladenen Räume nur mit den
+		// Reservierungen des Nutzers geladen.
 		if (this.reservierungen == null) {
-			this.reservierungen = new LinkedList<ReservierungImpl>();
+			setNeueReservierungenListe();
+			suchVerwaltung.getReservierungenEinesNutzers(this);
 		}
 		return this.reservierungen;
 	}
 
-	/**
-	 * Fügt eine neue Reservierung zum Benutzer hinzu.
-	 * 
-	 * @param reservierung
-	 *            Die Reservierung, die hinzugefügt werden soll
-	 * @return Ob die Reservierung tatsächlich hinzugefügt wurde
-	 */
-	public boolean addReservierung(ReservierungImpl reservierung) {
+	@Override
+	public boolean addReservierung(Raum raum, Zeitraum zeitraum) {
+		Reservierung reservierung = suchVerwaltung.getNeueReservierung(this, raum, zeitraum);
+		((RaumImpl) raum).addReservierung(reservierung);
 		return this.getReservierungen().add(reservierung);
 	}
 	
-	public boolean removeReservierung(ReservierungImpl reservierung)
+	@Override
+	public boolean removeReservierung(Reservierung reservierung)
 	{
+		suchVerwaltung.removeReservierung(reservierung);
+		((RaumImpl) reservierung.getRaum()).removeReservierung(reservierung);
 		return this.getReservierungen().remove(reservierung);
 	}
 
-	/**
-	 * 
-	 * @return Ob der Nutzer Admin ist.
-	 */
+	@Override
 	public boolean isAdmin() {
 		return isAdmin;
 	}
@@ -174,34 +166,10 @@ public class NutzerImpl extends Identifier implements Nutzer {
 		this.isAdmin = isAdmin;
 	}
 
-	private static List<NutzerImpl> getNutzerListe() {
-		if (NutzerImpl.nutzerListe == null) {
-			NutzerImpl.nutzerListe = new LinkedList<NutzerImpl>();
-		}
-		return NutzerImpl.nutzerListe;
-	}
-
-	public static Collection<NutzerImpl> getUnmodifiableNutzerCollection() {
-		return Collections.unmodifiableCollection(NutzerImpl.getNutzerListe());
-	}
-
-	public static boolean addNutzer(NutzerImpl nutzer) {
-		boolean addedNutzer = NutzerImpl.getNutzerListe().add(nutzer);
-		if (addedNutzer) {
-			NutzerImpl.modifiedNutzer = addedNutzer;
-		}
-		return addedNutzer;
-	}
-
-	public static boolean removeNutzer(NutzerImpl nutzer) {
-		boolean removedNutzer = NutzerImpl.getNutzerListe().remove(nutzer);
-		if (removedNutzer) {
-			NutzerImpl.modifiedNutzer = removedNutzer;
-		}
-		return removedNutzer;
+	@Override
+	public boolean deleteNutzer() {
+		return suchVerwaltung.removeNutzer(this);
 	}
 	
-	public boolean modifiedNutzer() {
-		return NutzerImpl.modifiedNutzer;
-	}
+	
 }

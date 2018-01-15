@@ -2,8 +2,6 @@ package de.projektprogrammieren.interfaces;
 
 import java.util.List;
 
-import de.projektprogrammieren.kern.ReservierungImpl;
-
 public interface Nutzer extends Identifiable {
 
 	/**
@@ -40,12 +38,14 @@ public interface Nutzer extends Identifiable {
 	 */
 	public void setEmail(String email);
 
-	/**
-	 * Gibt das Passwort des Nutzers zurück.
-	 * 
-	 * @return Passwort des Nutzers
-	 */
-	public String getPasswort();
+	// Das Passwort wird nur über die Datenbank verglichen
+	// und bei richtigem Passwort wird von dort ein Nutzer wiedergegeben.
+//	/**
+//	 * Gibt das Passwort des Nutzers zurück.
+//	 * 
+//	 * @return Passwort des Nutzers
+//	 */
+//	public String getPasswort();
 
 	/**
 	 * Setzt das Passwort des Benutzers. Ist der String NULL oder leer wird eine
@@ -56,6 +56,13 @@ public interface Nutzer extends Identifiable {
 	 * @exception IllegalArgumentException bei NULL oder leerem String
 	 */
 	public void setPasswort(String passwort);
+	
+	/**
+	 * Gibt das Passwort des Nutzers zurück.
+	 * 
+	 * @return Passwort des Nutzers
+	 */
+	public String getPasswort();
 
 	/**
 	 * Es wird eine unveränderliche Liste des Benutzers mit den Reservierungen
@@ -64,33 +71,39 @@ public interface Nutzer extends Identifiable {
 	 * 
 	 * @return Unveränderliche Liste aller Reservierungen des Nutzers.
 	 */
-	public List<ReservierungImpl> getUnmodifiableReservierungen();
+	public List<Reservierung> getUnmodifiableReservierungen();
 
 	/**
-	 * Fügt eine neue Reservierung zum Benutzer hinzu.
+	 * Fügt eine neue Reservierung zum Benutzer hinzu. Diese Veränderung
+	 * wird in die Datenbank geschrieben, wenn der Nutzer in diesem Zeitraum
+	 * noch keine Reservierung hat. Ansonsten wird eine Exception geworfen.
 	 * 
 	 * @param reservierung
 	 *            Die Reservierung, die hinzugefügt werden soll
-	 * @return Ob die Reservierung tatsächlich hinzugefügt wurde
+	 * @return Ob die Reservierung tatsächlich hinzugefügt wurde.
 	 */
-	public boolean addReservierung(ReservierungImpl reservierung);
+	public boolean addReservierung(Raum raum, Zeitraum zeitraum);
 	
-	public boolean removeReservierung(ReservierungImpl reservierung);
+	/**
+	 * Entfernt eine Reservierung auch aus der Datenbank.
+	 * 
+	 * @param reservierung Die Reservierung, die entfernt werden soll.
+	 * @return Ob die Reservierung entfernt wurde.
+	 */
+	public boolean removeReservierung(Reservierung reservierung);
 
 	/**
+	 * Gibt wieder, ob der Nutzer Admin ist.
 	 * 
 	 * @return Ob der Nutzer Admin ist.
 	 */
 	public boolean isAdmin();
-
-	/**
-	 * Setzt den neuen Adminstatus des Benutzers.
-	 * 
-	 * @param isAdmin
-	 *            neuer Adminstatus des Benutzers
-	 */
-	public void setAdmin(boolean isAdmin);
 	
-	public boolean modifiedNutzer();
+	/**
+	 * Löscht den Nutzer, auch aus der Datenbank.
+	 * 
+	 * @return Ob der Nutzer erfolgreich gelöscht wurde.
+	 */
+	public boolean deleteNutzer();
 	
 }

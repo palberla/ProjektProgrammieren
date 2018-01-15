@@ -2,9 +2,7 @@ package de.projektprogrammieren.interfaces;
 
 import java.util.Collection;
 
-import de.projektprogrammieren.kern.ReservierungImpl;
-
-public interface Raum {
+public interface Raum extends Identifiable {
 	
 	/**
 	 * Gibt die Raumnummer des Raumes zurück.
@@ -32,22 +30,8 @@ public interface Raum {
 
 	/**
 	 * Gibt die unveränderbare Liste der Reservierungen des Raumes zurück.
+	 * Das Hinzufügen und Löschen von Reservierungen findet über den Nutzer statt.
 	 * @return unveränderbare Liste der Reservierunge des Raumes
 	 */
-	public Collection<ReservierungImpl> getUnmodifiableReservierungen();
-	
-	/**
-	 * Fügt eine Reservierung für den Raum hinzu und gibt zurück, 
-	 * ob die Hinzufügung tatsächlich geschehen ist.
-	 * @param reservierung Reservierung, die hinzugefügt werden soll
-	 * @return Reservierung tatsächlich hinzugefügt
-	 */
-	public boolean addReservierung(ReservierungImpl reservierung);
-	
-	/**
-	 * Entfernt eine Reservierung
-	 * @param reservierung Reservierung, die entfernt werden soll
-	 * @return Reservierung wurde tatsächlich entfernt
-	 */
-	public boolean removeReservierung(ReservierungImpl reservierung);
+	public Collection<Reservierung> getUnmodifiableReservierungen();
 }
