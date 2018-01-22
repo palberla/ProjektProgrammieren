@@ -1,8 +1,16 @@
 package de.projektprogrammieren.application.factory;
 
 import de.projektprogrammieren.application.Main;
+import de.projektprogrammieren.application.controller.SuchController;
+import de.projektprogrammieren.interfaces.Raum;
+import de.projektprogrammieren.kern.EntityManager;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -17,7 +25,7 @@ public class SceneFactory {
 	private Scene sceneRegistrierung = null;
 	private Scene sceneReservierung = null;
 	private Scene sceneNutzerProfil = null;
-	private Scene sceneBuchungsdaten = null;
+	private Scene sceneReservierung_Details = null;
 	
 	private SceneFactory()
 	{
@@ -47,6 +55,26 @@ public class SceneFactory {
 		if (this.sceneSuche == null) {
 			try {
 				AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("suche.fxml"));
+				for (Node node : root.getChildren()) {
+					if (node instanceof ChoiceBox && node.getId().equals("choiceBoxRaumNummer")) {
+						ChoiceBox choiceBox = (ChoiceBox) node;
+						choiceBox.getItems().add(SuchController.DEFAULT_VALUE_RAUM_NUMMER);
+						choiceBox.getItems().addAll(EntityManager.getSuchVerwaltung().getUnmodifiableAlleRaumNummernColletion());
+						choiceBox.setValue(SuchController.DEFAULT_VALUE_RAUM_NUMMER);
+					}
+					else if (node instanceof TableView && node.getId().equals("tableViewSuchergebnis"))
+					{
+						TableView tableView = (TableView) node;
+						for (Object column : tableView.getColumns())
+						{
+							TableColumn tableColumn = (TableColumn) column;
+							if (tableColumn.getId().equals("columnRaumnummer"))
+							{
+								tableColumn.setCellValueFactory(new PropertyValueFactory<Raum, String>("nummer"));
+							}
+						}
+					}
+				}
 				this.sceneSuche = new Scene(root);
 				this.sceneSuche.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			} catch (Exception e) {
@@ -119,22 +147,22 @@ public class SceneFactory {
 		this.primaryStage.show();
 	}
 	
-	public Scene getSceneBuchungsdaten() {
-		if (this.sceneBuchungsdaten == null) {
+	public Scene getSceneReservierung_Details() {
+		if (this.sceneReservierung_Details == null) {
 			try {
-				AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("buchungsdaten.fxml"));
-				this.sceneBuchungsdaten = new Scene(root);
-				this.sceneBuchungsdaten.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("Reservierung_Details.fxml"));
+				this.sceneReservierung_Details = new Scene(root);
+				this.sceneReservierung_Details.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return this.sceneBuchungsdaten;
+		return this.sceneReservierung_Details;
 	}
 	
-	public void showSceneBuchungsdaten()
+	public void showSceneReservierung_Details()
 	{
-		this.primaryStage.setScene(this.getSceneBuchungsdaten());
+		this.primaryStage.setScene(this.getSceneReservierung_Details());
 		this.primaryStage.show();
 	}
 	

@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.projektprogrammieren.application.controller.ReservierungsDetailsController">
    <children>
       <ImageView fitHeight="112.0" fitWidth="200.0" layoutX="264.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -24,13 +24,13 @@
       <TextField fx:id="txtFieldArbeitsplaetze" alignment="CENTER_RIGHT" layoutX="463.0" layoutY="206.0" prefHeight="25.0" prefWidth="96.0" promptText="35" />
       <TextField fx:id="txtFieldComputerArbeitsplaetze" alignment="CENTER_RIGHT" layoutX="463.0" layoutY="235.0" prefHeight="25.0" prefWidth="96.0" promptText="0" />
       <Text layoutX="178.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Barrierefrei:" />
-      <Button fx:id="btnAbbrechen" layoutX="460.0" layoutY="406.0" mnemonicParsing="false" text="Abbrechen" AnchorPane.rightAnchor="200.0">
+      <Button fx:id="btnAbbrechen" layoutX="460.0" layoutY="406.0" mnemonicParsing="false" onMouseClicked="#btnAbbrechenClicked" text="Abbrechen" AnchorPane.rightAnchor="200.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
       <Text layoutX="177.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Computerplätze:" />
-      <Button fx:id="btnReservieren" layoutX="169.0" layoutY="406.0" mnemonicParsing="false" text="Reservieren" AnchorPane.leftAnchor="200.0">
+      <Button fx:id="btnReservieren" layoutX="169.0" layoutY="406.0" mnemonicParsing="false" text="Reservieren" onMouseClicked="#btnReservierenClicked" AnchorPane.leftAnchor="200.0">
          <font>
             <Font size="15.0" />
          </font>

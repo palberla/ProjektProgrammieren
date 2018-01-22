@@ -2,6 +2,7 @@ package de.projektprogrammieren.application.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ReservierungsController {
@@ -19,9 +20,12 @@ public class ReservierungsController {
 	TextField txtFieldNutzerName;
 
 	@FXML
-	Button btnBestätigen;
+	Button btnBestaetigen;
+	
+	@FXML
+	TextArea txtFieldKommentare;
 
 	@FXML
-	protected void btnBestätigenClicked() {
+	protected void btnBestaetigenClicked() {
 	}
 }

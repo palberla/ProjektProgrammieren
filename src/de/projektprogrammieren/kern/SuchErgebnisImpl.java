@@ -22,6 +22,11 @@ public class SuchErgebnisImpl implements SuchErgebnis {
 	public void addRaum(Raum raum) {
 		this.raumListe.add(raum);
 	}
+	
+	public void removeRaum(Raum raum)
+	{
+		this.raumListe.remove(raum);
+	}
 
 	@Override
 	public SuchAnfrage getSuchAnfrage() {

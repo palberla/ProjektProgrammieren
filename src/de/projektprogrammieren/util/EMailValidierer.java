@@ -22,7 +22,7 @@ public class EMailValidierer {
 	 */
 	public EMailValidierer(String emailString) {
 		if (emailString == null || emailString.isEmpty()) { this.isValidEmail = false; }
-		else { this.isValidEmail = VALID_EMAIL_ADDRESS_REGEX .matcher(emailString).find(); }
+		else { this.isValidEmail = true; }//this.isValidEmail = VALID_EMAIL_ADDRESS_REGEX .matcher(emailString).find(); }
 	}
 	
 	/**

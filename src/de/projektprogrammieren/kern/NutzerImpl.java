@@ -97,7 +97,7 @@ public class NutzerImpl extends Identifier implements Nutzer {
 	}
 	
 	public void setPasswort(String passwort, boolean datenbank) {
-		if (new PasswortValidierer(passwort).isValidPasswort()) {
+		if (!(new PasswortValidierer(passwort).isValidPasswort())) {
 			throw new IllegalArgumentException("Kein gültiges Passwort!");
 		}
 		this.passwort = passwort;
@@ -123,15 +123,9 @@ public class NutzerImpl extends Identifier implements Nutzer {
 	 * @return Die veränderbare Liste des Benutzer mit den Reservierungen.
 	 */
 	public List<Reservierung> getReservierungen() {
-		// TODO Nachladen von Reservierungen!
-		// Hier lädt er keine Reservierungen.
-		// Diese werden erst nachgeladen, sobald
-		// die Reservierungen des Nutzers angefragt werden.
-		// Dann werden die dazu geladenen Räume nur mit den
-		// Reservierungen des Nutzers geladen.
 		if (this.reservierungen == null) {
 			setNeueReservierungenListe();
-			suchVerwaltung.getReservierungenEinesNutzers(this);
+			this.reservierungen.addAll(suchVerwaltung.getReservierungenEinesNutzers(this));
 		}
 		return this.reservierungen;
 	}

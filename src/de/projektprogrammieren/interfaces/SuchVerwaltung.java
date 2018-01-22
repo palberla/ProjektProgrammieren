@@ -92,5 +92,10 @@ public interface SuchVerwaltung {
 	public boolean removeReservierung(Reservierung reservierung);
 	
 	public Collection<Reservierung> getReservierungenEinesNutzers(Nutzer nutzer);
-
+	
+	public Collection<Reservierung> getReservierungenEinesRaumes(Raum raum);
+	
+	public Raum getRaumOhneReservierungen(String nummer);
 }
+
+

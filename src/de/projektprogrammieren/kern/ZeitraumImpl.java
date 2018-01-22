@@ -64,9 +64,17 @@ public class ZeitraumImpl implements Zeitraum {
 		Date thisZeitAb = this.getZeitAb();
 		Date thisZeitBis = this.getZeitBis();
 		
-		if (zeitBis.before(thisZeitAb)) { return false; }
-		if (thisZeitBis.before(zeitAb)) { return false; }
+		if (zeitAb.getTime() > thisZeitBis.getTime() || zeitBis.getTime() < thisZeitAb.getTime()) { return false; }
+		
+//		if (zeitBis.before(thisZeitAb)) { return false; }
+//		if (thisZeitBis.before(zeitAb)) { return false; }
 		return true;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return this.getZeitAb().toString() + " : " + this.getZeitBis().toString();
 	}
 
 }

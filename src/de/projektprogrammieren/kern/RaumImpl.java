@@ -4,6 +4,8 @@ import java.util.*;
 
 import de.projektprogrammieren.interfaces.Raum;
 import de.projektprogrammieren.interfaces.Reservierung;
+import de.projektprogrammieren.interfaces.SuchVerwaltung;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * @author Michael Jahn
@@ -13,7 +15,7 @@ public class RaumImpl extends Identifier implements Raum {
 	/**
 	 * Die Raumnummer.
 	 */
-	private String nummer;
+	private SimpleStringProperty nummer;
 
 	/**
 	 * Anzahl der Arbeitsplaetze.
@@ -36,6 +38,11 @@ public class RaumImpl extends Identifier implements Raum {
 	private List<Reservierung> reservierungen;
 	
 	/**
+	 * Link auf die Suchverwaltung
+	 */
+	private SuchVerwaltung suchVerwaltung = EntityManager.getSuchVerwaltung();
+	
+	/**
 	 * Default constructor
 	 */
 	protected RaumImpl() {}
@@ -43,6 +50,12 @@ public class RaumImpl extends Identifier implements Raum {
 
 	@Override
 	public String getNummer() {
+		return (nummer != null)?nummer.get():null;
+	}
+	
+	@Override
+	public SimpleStringProperty nummerProperty()
+	{
 		return nummer;
 	}
 
@@ -55,7 +68,7 @@ public class RaumImpl extends Identifier implements Raum {
 		if (nummer == null || nummer.isEmpty()) {
 			throw new IllegalArgumentException("Kein gültige Raumnummer!");
 		}
-		this.nummer = nummer;
+		this.nummer = new SimpleStringProperty(nummer);
 	}
 
 	@Override
@@ -104,17 +117,23 @@ public class RaumImpl extends Identifier implements Raum {
 	public void setRollstuhlgerecht(boolean behindertengerecht) {
 		this.behindertengerecht = behindertengerecht;
 	}
+	
+	public void setNeueReservierungenListe()
+	{
+		this.reservierungen = new LinkedList<Reservierung>();
+	}
 
 	/**
 	 * Prüft, ob eine Liste mit den Reservierungen des Raumes existiert und
 	 * gibt die veränderbare Liste der Reservierungen des Raumes zurück.
 	 * @return Veränderbare Liste der Reservierungen des Raumes
 	 */
-	private List<Reservierung> getReservierungen() {
+	public List<Reservierung> getReservierungen() {
 		if (this.reservierungen == null) {
-			this.reservierungen = new LinkedList<Reservierung>();
+			setNeueReservierungenListe();
+			this.reservierungen.addAll(suchVerwaltung.getReservierungenEinesRaumes(this));
 		}
-		return reservierungen;
+		return this.reservierungen;
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class PasswortValidierer {
 	 * @param passwortString Die E-Mailadresse
 	 */
 	public PasswortValidierer(String passwortString) {
-		if (passwortString == null || passwortString.length() < 8) { this.isValidPasswort = false; }
+		if (passwortString == null || passwortString.length() < 3) { this.isValidPasswort = false; }
 		else { this.isValidPasswort = true; }
 	}
 	

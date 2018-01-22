@@ -29,7 +29,7 @@
       <Text layoutX="178.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Auf den Namen:" />
       <Text layoutX="178.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kommentar/Anfrage/Sonstiges:" />
       <TextArea fx:id="txtFieldKommentare" layoutX="177.0" layoutY="346.0" prefHeight="122.0" prefWidth="383.0" />
-      <Button fx:id="btnBestätigen" layoutX="321.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#btnBestätigenClicked" text="Bestätigen">
+      <Button fx:id="btnBestaetigen" layoutX="321.0" layoutY="485.0" mnemonicParsing="false" onMouseClicked="#btnBestaetigenClicked" text="Bestätigen">
          <font>
             <Font size="15.0" />
          </font>
