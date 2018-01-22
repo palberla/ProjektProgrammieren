@@ -5,7 +5,6 @@ import java.util.*;
 import de.projektprogrammieren.interfaces.Raum;
 import de.projektprogrammieren.interfaces.Reservierung;
 import de.projektprogrammieren.interfaces.SuchVerwaltung;
-import javafx.beans.property.SimpleStringProperty;
 
 /**
  * @author Michael Jahn
@@ -15,7 +14,7 @@ public class RaumImpl extends Identifier implements Raum {
 	/**
 	 * Die Raumnummer.
 	 */
-	private SimpleStringProperty nummer;
+	private String nummer;
 
 	/**
 	 * Anzahl der Arbeitsplaetze.
@@ -50,15 +49,8 @@ public class RaumImpl extends Identifier implements Raum {
 
 	@Override
 	public String getNummer() {
-		return (nummer != null)?nummer.get():null;
-	}
-	
-	@Override
-	public SimpleStringProperty nummerProperty()
-	{
 		return nummer;
 	}
-
 	/**
 	 * Setzt die Raumnummer des Raumes neu.
 	 * @param nummer Neue Raumnummer
@@ -68,7 +60,7 @@ public class RaumImpl extends Identifier implements Raum {
 		if (nummer == null || nummer.isEmpty()) {
 			throw new IllegalArgumentException("Kein gültige Raumnummer!");
 		}
-		this.nummer = new SimpleStringProperty(nummer);
+		this.nummer = nummer;
 	}
 
 	@Override

@@ -2,8 +2,6 @@ package de.projektprogrammieren.interfaces;
 
 import java.util.Collection;
 
-import javafx.beans.property.SimpleStringProperty;
-
 public interface Raum extends Identifiable {
 	
 	/**
@@ -12,8 +10,6 @@ public interface Raum extends Identifiable {
 	 */
 	public String getNummer();
 	
-	public SimpleStringProperty nummerProperty();
-
 	/**
 	 * Gibt die Anzahl der Arbeitsplätze des Raumes zurück.
 	 * @return Anzahl der Arbeitsplätze des Raumes

@@ -1,6 +1,7 @@
 package de.projektprogrammieren.application.controller;
 
 import de.projektprogrammieren.application.factory.SceneFactory;
+import de.projektprogrammieren.interfaces.Nutzer;
 import de.projektprogrammieren.kern.EntityManager;
 import de.projektprogrammieren.util.EMailValidierer;
 import de.projektprogrammieren.util.PasswortValidierer;
@@ -33,11 +34,13 @@ public class AnmeldungsController {
 	@FXML
 	protected void btnAnmeldungClicked()
 	{
-		if (!(pwdFieldPasswort.getText().equals(EntityManager.getSuchVerwaltung().getNutzer(txtFieldEMail.getText()).getPasswort())))
+		Nutzer nutzer = EntityManager.getSuchVerwaltung().getNutzer(txtFieldEMail.getText());
+		if (!(pwdFieldPasswort.getText().equals(nutzer.getPasswort())))
 		{
 			this.setRedBorderForTextField(pwdFieldPasswort);
 			return;
 		}
+		SceneFactory.getInstance().setAngemeldeterNutzer(nutzer);
 		SceneFactory.getInstance().showSceneSuche();
 		
 //		if (!(new EMailValidierer(txtFieldEMail.getText()).isValidEMail()))

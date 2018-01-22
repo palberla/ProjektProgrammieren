@@ -30,6 +30,7 @@ public class Main extends Application {
 		
 		Main.primaryStage = primaryStage;
 		SceneFactory.getInstance().showSceneAnmeldung();
+//		SceneFactory.getInstance().showSceneSuche();
 		// BorderPane root = new BorderPane();
 		// Scene scene = new Scene(root,400,400);
 		// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -41,7 +42,7 @@ public class Main extends Application {
 	public static void main(String[] args) throws SQLException {
 		
 		// 1, 'cicero', 'cicero@lastknightnik.eu', 'caesar', 1
-		SuchVerwaltung suchVerwaltung = EntityManager.getSuchVerwaltung();
+//		SuchVerwaltung suchVerwaltung = EntityManager.getSuchVerwaltung();
 //		
 //		Nutzer nutzer = suchVerwaltung.getNutzer("cicero@lastknightnik.eu");
 		
@@ -62,8 +63,8 @@ public class Main extends Application {
 //		date.setSeconds(0);
 //		System.out.println(date);
 		
-		SuchAnfrage anfrage = suchVerwaltung.getNeueSuchAnfrage();
-		anfrage.setRaumNummer("a001");
+//		SuchAnfrage anfrage = suchVerwaltung.getNeueSuchAnfrage();
+//		anfrage.setRaumNummer("a001");
 //		anfrage.setArbeitsplaetze(10);
 //		anfrage.setComputerArbeitsplaetze(10);
 //		anfrage.setBehindertengerecht(true);
@@ -85,44 +86,46 @@ public class Main extends Application {
 //		bis.setSeconds(0);
 //		System.out.println(bis);
 		
-		Date vonAnfrage = new Date();
-		vonAnfrage.setYear(118);
-		vonAnfrage.setMonth(0);
-		vonAnfrage.setDate(15);
-		vonAnfrage.setHours(19);
-		vonAnfrage.setMinutes(00);
-		vonAnfrage.setSeconds(0);
+//		Date vonAnfrage = new Date();
+//		vonAnfrage.setYear(118);
+//		vonAnfrage.setMonth(0);
+//		vonAnfrage.setDate(15);
+//		vonAnfrage.setHours(19);
+//		vonAnfrage.setMinutes(00);
+//		vonAnfrage.setSeconds(0);
+//		
+//		Date bisAnfrage = new Date();
+//		bisAnfrage.setYear(118);
+//		bisAnfrage.setMonth(0);
+//		bisAnfrage.setDate(15);
+//		bisAnfrage.setHours(20);
+//		bisAnfrage.setMinutes(00);
+//		bisAnfrage.setSeconds(0);
+//		
+//		anfrage.setZeitraum(suchVerwaltung.getNeuenZeitraum(vonAnfrage, bisAnfrage));
+//		
+//		SuchErgebnis ergebnis = suchVerwaltung.getSuchErgebnis(anfrage);
+//		
+//		System.out.println(ergebnis.getSuchAnfrage().getZeitraum().toString());
+//		
+//		
+//		for (Raum raum : ergebnis.getUnmodifiableRaumCollection())
+//		{
+//			System.out.println(raum.getId());
+//			System.out.println(raum.getNummer());
+//			System.out.println(raum.getArbeitsplaetze());
+//			System.out.println(raum.getComputerarbeitsplaetze());
+//			System.out.println(raum.isRollstuhlgerecht());
+//			for (Reservierung reservierung : raum.getUnmodifiableReservierungen())
+//			{
+//				System.out.println(reservierung.getNutzer().getName());
+//				System.out.println(reservierung.getRaum().getNummer());
+//				System.out.println(reservierung.getZeitraum().toString());
+//				System.out.println(reservierung.getZeitraum().ueberschneidetSich(ergebnis.getSuchAnfrage().getZeitraum()));
+//			}
+//		}
 		
-		Date bisAnfrage = new Date();
-		bisAnfrage.setYear(118);
-		bisAnfrage.setMonth(0);
-		bisAnfrage.setDate(15);
-		bisAnfrage.setHours(20);
-		bisAnfrage.setMinutes(00);
-		bisAnfrage.setSeconds(0);
 		
-		anfrage.setZeitraum(suchVerwaltung.getNeuenZeitraum(vonAnfrage, bisAnfrage));
-		
-		SuchErgebnis ergebnis = suchVerwaltung.getSuchErgebnis(anfrage);
-		
-		System.out.println(ergebnis.getSuchAnfrage().getZeitraum().toString());
-		
-		
-		for (Raum raum : ergebnis.getUnmodifiableRaumCollection())
-		{
-			System.out.println(raum.getId());
-			System.out.println(raum.getNummer());
-			System.out.println(raum.getArbeitsplaetze());
-			System.out.println(raum.getComputerarbeitsplaetze());
-			System.out.println(raum.isRollstuhlgerecht());
-			for (Reservierung reservierung : raum.getUnmodifiableReservierungen())
-			{
-				System.out.println(reservierung.getNutzer().getName());
-				System.out.println(reservierung.getRaum().getNummer());
-				System.out.println(reservierung.getZeitraum().getZeitAb());
-				System.out.println(reservierung.getZeitraum().getZeitBis());
-			}
-		}
 		
 //		Nutzer nutzer = suchVerwaltung.getNutzer("test@test.de");
 //		

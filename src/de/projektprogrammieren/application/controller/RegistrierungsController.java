@@ -1,6 +1,7 @@
 package de.projektprogrammieren.application.controller;
 
 import de.projektprogrammieren.application.factory.SceneFactory;
+import de.projektprogrammieren.interfaces.Nutzer;
 import de.projektprogrammieren.kern.EntityManager;
 import de.projektprogrammieren.util.EMailValidierer;
 import de.projektprogrammieren.util.PasswortValidierer;
@@ -54,9 +55,9 @@ public class RegistrierungsController {
 		}
 		this.setGreenBorderForTextField(txtFieldPasswort);
 		this.setGreenBorderForTextField(txtFieldPasswortWiederholung);
-		
-		EntityManager.getSuchVerwaltung().getNeuenNutzer(txtFieldName.getText(), txtFieldEMail.getText(), txtFieldPasswort.getText(), false);
-		
+		Nutzer nutzer = EntityManager.getSuchVerwaltung().getNeuenNutzer(txtFieldName.getText(), txtFieldEMail.getText(), txtFieldPasswort.getText(), false);
+
+		SceneFactory.getInstance().setAngemeldeterNutzer(nutzer);
 		SceneFactory.getInstance().showSceneSuche();
 	}
 

@@ -118,8 +118,19 @@ public class EntityManager implements SuchVerwaltung {
 	}
 	
 	// ----------
-
-// -> brauchen für präsentation
+	
+	private boolean checkForUeberschneidungen(Raum raum, SuchAnfrage suchAnfrage)
+	{
+		for (Reservierung reservierung : raum.getUnmodifiableReservierungen())
+		{
+			if (reservierung.getZeitraum().ueberschneidetSich(suchAnfrage.getZeitraum()))
+//			if (!(vonSuche.getTime() > bisRes.getTime() && bisSuche.getTime() < vonRes.getTime()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public SuchErgebnis getSuchErgebnis(SuchAnfrage suchAnfrage) {
@@ -128,7 +139,11 @@ public class EntityManager implements SuchVerwaltung {
 		
 		if (suchAnfrage.getRaumNummer() != null) {
 			Raum raum = getRaumOhneReservierungen(suchAnfrage.getRaumNummer());
-			suchErgebnis.addRaum(raum);
+			if (!(this.checkForUeberschneidungen(raum, suchAnfrage)) 
+					&& raum.getArbeitsplaetze() >= suchAnfrage.getArbeitsplaetze()
+					&& raum.getComputerarbeitsplaetze() >= suchAnfrage.getComputerarbeitsplaetze()
+					&& ((raum.isRollstuhlgerecht() && suchAnfrage.isBehindertengerecht())||(!raum.isRollstuhlgerecht() && !suchAnfrage.isBehindertengerecht())))
+			{ suchErgebnis.addRaum(raum); }
 		}
 		else {
 			StringBuffer buf = new StringBuffer();
@@ -173,24 +188,9 @@ public class EntityManager implements SuchVerwaltung {
 				ResultSet rs = statement.executeQuery(sqlString);
 				while (rs.next()) {
 					raum = this.getRaumOhneReservierungenFromResultSet(rs);
-					suchErgebnis.addRaum(raum);
+					if (!(this.checkForUeberschneidungen(raum, suchAnfrage))) { suchErgebnis.addRaum(raum); }
 				}
 				connectionPool.checkIn(connection);
-				
-				
-				// Alle Reservierungen überprüfen, ob eine Überschneidung stattfindet.
-				for (Raum resRaum :  suchErgebnis.getUnmodifiableRaumCollection())
-				{
-					for (Reservierung reservierung : resRaum.getUnmodifiableReservierungen())
-					{
-						if (reservierung.getZeitraum().ueberschneidetSich(suchErgebnis.getSuchAnfrage().getZeitraum()))
-						{
-							System.out.println("Zeitraum überschniedet sich.");
-							suchErgebnis.removeRaum(resRaum);
-							break;
-						}
-					}
-				}
 				
 				return suchErgebnis;
 			} catch (SQLException e) {
