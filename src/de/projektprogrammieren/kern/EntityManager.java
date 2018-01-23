@@ -574,7 +574,7 @@ public class EntityManager implements SuchVerwaltung {
 			raum.setArbeitsplaetze(Integer.parseInt(rs.getString("arbeitsplaetze")));
 			raum.setComputerarbeitsplaetze(Integer.parseInt(rs.getString("computerarbeitsplaetze")));
 			raum.setNummer(rs.getString("nummer"));
-			raum.setRollstuhlgerecht(Boolean.parseBoolean(rs.getString("rollstuhlgerecht")));
+			raum.setRollstuhlgerecht((Integer.parseInt(rs.getString("rollstuhlgerecht")) == 1)?true:false);
 			return raum;
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
